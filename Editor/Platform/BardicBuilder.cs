@@ -7,7 +7,7 @@ using System.IO;
 
 namespace BB.BardicFramework.Platform.Editor
 {
-    [CreateAssetMenu(menuName = Prefixes.Platform)]
+    [CreateAssetMenu(menuName = Prefixes.Platform+"Builder")]
     public class BardicBuilder : ScriptableObject
     {
         public UnityEvent onPreBuild;

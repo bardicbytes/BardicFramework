@@ -13,11 +13,16 @@
             "displayName": "Demo",
             "description": "A simple demonstration of the framework in use.",
             "path": "Samples~/Demo"
+        },
+		{
+            "displayName": "Actor Modules",
+            "description": "A collection of simple Actor Module derrivations",
+            "path": "Samples~/ActorModules"
         }
     ],
   "author": {
-    "name": "Alex Pizzini",
-    "email": "alex@bardicbytes.com",
+    "name": "Bardic Bytes LLC",
+    "email": "support@bardicbytes.com",
     "url": "https://www.bardicbytes.com"
   }
 }
