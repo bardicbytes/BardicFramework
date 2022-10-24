@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Physics
+namespace BB.BardicFramework.Physics
 {
     public static class PhysicsHelper
     {

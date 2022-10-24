@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿//alex@bardicbytes.com
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Cameras
+namespace BB.BardicFramework.Cameras
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Cameras+"Camera Manager")]
+    [CreateAssetMenu(menuName = Prefixes.Cameras+"Camera Manager")]
     public class CameraManager : ScriptableObject
     {
         [SerializeField]

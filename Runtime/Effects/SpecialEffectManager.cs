@@ -1,5 +1,5 @@
-﻿using BardicBytes.BardicFramework.Core;
-using BardicBytes.BardicFramework.Core.EventVars;
+﻿//alex@bardicbytes.com
+using BB.BardicFramework.EventVars;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using UnityEngine;
 
 using SF = UnityEngine.SerializeField;
 
-namespace BardicBytes.BardicFramework.Effects
+namespace BB.BardicFramework.Effects
 {
     public class SpecialEffectManager : MonoBehaviour
     {

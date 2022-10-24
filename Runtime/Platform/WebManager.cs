@@ -1,13 +1,9 @@
-/**
- * alex@bardicbytes.com
- * Copyright (c) 2020 Bardic Bytes, LLC
- **/
-
+//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Platform
+namespace BB.BardicFramework.Platform
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Platform + "Web")]
+    [CreateAssetMenu(menuName = Prefixes.Platform + "Web")]
     public class WebManager : PlatformManager
     {
         [SerializeField] private string siteName = "";

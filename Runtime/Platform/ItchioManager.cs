@@ -1,13 +1,9 @@
-/**
- * alex@bardicbytes.com
- * Copyright (c) 2020 Bardic Bytes, LLC
- **/
-
+//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Platform
+namespace BB.BardicFramework.Platform
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Platform + "Itchio")]
+    [CreateAssetMenu(menuName = Prefixes.Platform + "Itchio")]
     public class ItchioManager : PlatformManager
     {
         public override string AccountID => "Default Profile";

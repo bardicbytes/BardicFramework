@@ -1,13 +1,13 @@
-
+//alex@bardicbytes.com
 using UnityEditor;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
 using System.IO;
 
-namespace BardicBytes.BardicFramework.Platform.Editor
+namespace BB.BardicFramework.Platform.Editor
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Platform)]
+    [CreateAssetMenu(menuName = Prefixes.Platform)]
     public class BardicBuilder : ScriptableObject
     {
         public UnityEvent onPreBuild;

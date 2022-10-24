@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace BardicBytes.BardicFramework.Effects.Editor
+namespace BB.BardicFramework.Effects.Editor
 {
     [CustomEditor(typeof(SpecialEffectManagerEditor))]
     public class SpecialEffectManagerEditor : UnityEditor.Editor

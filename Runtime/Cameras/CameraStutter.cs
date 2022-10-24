@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Cameras
+namespace BB.BardicFramework.Cameras
 {
     public class CameraStutter : MonoBehaviour
     {

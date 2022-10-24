@@ -1,7 +1,7 @@
 ﻿//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Actions
+namespace BB.BardicFramework.Actions
 {
     public abstract class Action : ScriptableObject
     {

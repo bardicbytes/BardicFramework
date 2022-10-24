@@ -1,10 +1,7 @@
-using BardicBytes.BardicFramework.Core.EventVars;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace BardicBytes.BardicFramework.EventVars.Editor
+namespace BB.BardicFramework.EventVars.Editor
 {
     [CustomPropertyDrawer(typeof(BaseEventVarField), true)]
     public class EventVarFieldDrawer : PropertyDrawer

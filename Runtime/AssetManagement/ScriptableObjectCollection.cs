@@ -1,7 +1,7 @@
-﻿using BardicBytes.BardicFramework.Core;
+﻿//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.AssetManagement
+namespace BB.BardicFramework.AssetManagement
 {
     namespace Bardic
     {

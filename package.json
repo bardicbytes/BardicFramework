@@ -8,7 +8,13 @@
     "Unity",
     "Framework",
     "BardicBytes"
-  ],
+  ],"samples": [
+        {
+            "displayName": "Demo",
+            "description": "A simple demonstration of the framework in use.",
+            "path": "Samples~/Demo"
+        }
+    ],
   "author": {
     "name": "Alex Pizzini",
     "email": "alex@bardicbytes.com",

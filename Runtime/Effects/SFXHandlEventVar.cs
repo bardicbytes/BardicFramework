@@ -1,10 +1,10 @@
-﻿using BardicBytes.BardicFramework.Core;
-using BardicBytes.BardicFramework.Core.EventVars;
+﻿//alex@bardicbytes.com
+using BB.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Effects
+namespace BB.BardicFramework.Effects
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Effects+"SFX Handle")]
+    [CreateAssetMenu(menuName = Prefixes.Effects+"SFX Handle")]
     public class SFXHandleEventVar : GenericEventVar<SoundEffect.ActiveHandle> 
     {
         public override SoundEffect.ActiveHandle To(EventVarInstanceField bc) => (SoundEffect.ActiveHandle)bc.SystemObjectValue;

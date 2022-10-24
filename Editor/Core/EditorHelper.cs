@@ -1,11 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 using UnityEditor;
-using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Core.Editor
+namespace BB.BardicFramework.Editor
 {
     public static class EditorHelper
     {

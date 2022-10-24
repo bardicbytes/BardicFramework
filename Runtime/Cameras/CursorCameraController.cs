@@ -1,4 +1,4 @@
-﻿namespace BardicBytes.BardicFramework.Cameras
+﻿namespace BB.BardicFramework.Cameras
 {
     public class CursorCameraController : CameraController
     {

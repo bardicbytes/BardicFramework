@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.AssetManagement
+namespace BB.BardicFramework.AssetManagement
 {
     public class WeightedPrefabRandomizer<ComponentType> where ComponentType : Component
     {

@@ -1,7 +1,7 @@
 using UnityEditor.Build;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Platform.Editor
+namespace BB.BardicFramework.Platform.Editor
 {
     public class BardicBuildPreprocessor : IPreprocessBuildWithReport
     {

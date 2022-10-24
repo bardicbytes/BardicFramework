@@ -1,12 +1,12 @@
-﻿using BardicBytes.BardicFramework.Core;
-using BardicBytes.BardicFramework.Core.EventVars;
+﻿//alex@bardicbytes.com
+using BB.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace BardicBytes.BardicFramework.Effects
+namespace BB.BardicFramework.Effects
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Effects+"Special Effect")]
+    [CreateAssetMenu(menuName = Prefixes.Effects+"Special Effect")]
     public class SpecialEffect : GenericEventVar<SpecialEffect.PlayRequest>
     {
         [SerializeField]

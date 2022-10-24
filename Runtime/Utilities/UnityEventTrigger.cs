@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace BardicBytes.BardicFramework.Utilities
+namespace BB.BardicFramework.Utilities
 {
     public class UnityEventTrigger : MonoBehaviour
     {

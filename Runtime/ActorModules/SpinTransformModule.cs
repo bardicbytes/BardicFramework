@@ -1,9 +1,8 @@
 //alex@bardicbytes.com
-using BardicBytes.BardicFramework.Core;
-using BardicBytes.BardicFramework.Core.EventVars;
+using BB.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.ActorModules
+namespace BB.BardicFramework.ActorModules
 {
     /// <summary>
     /// Moves the actor toward's the first Tagged Target Actor, the position is offset by center of mass.
@@ -23,6 +22,7 @@ namespace BardicBytes.BardicFramework.ActorModules
         {
             base.OnValidate();
             if (Target == null) Target = Target = transform;
+            Speed.Validate(this);
         }
         protected override void ActorUpdate()
         {

@@ -1,10 +1,10 @@
-﻿using BardicBytes.BardicFramework.Core;
-using BardicBytes.BardicFramework.Core.EventVars;
+﻿//alex@bardicbytes.com
+using BB.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Effects
+namespace BB.BardicFramework.Effects
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Effects + "Event Var: Special Effect Handle")]
+    [CreateAssetMenu(menuName = Prefixes.Effects + "Event Var: Special Effect Handle")]
     public class SpecialEffectHandleEvent : GenericEventVar<SpecialEffect.ActiveHandle>
     {
         public override SpecialEffect.ActiveHandle To(EventVarInstanceField bc) => (SpecialEffect.ActiveHandle)bc.SystemObjectValue;

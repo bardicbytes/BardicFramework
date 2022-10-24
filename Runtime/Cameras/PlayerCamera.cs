@@ -3,7 +3,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Cameras
+namespace BB.BardicFramework.Cameras
 {
     [System.Serializable]
     public class CamOffset
@@ -36,7 +36,7 @@ namespace BardicBytes.BardicFramework.Cameras
     public class PlayerCamera : CameraController, IOffsetCameraController
     {
         [SerializeField]
-        private Core.ActorTag targetTag = default;
+        private ActorTag targetTag = default;
         [Space]
         [SerializeField]
         private Camera overlay = default;

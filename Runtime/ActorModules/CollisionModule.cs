@@ -1,8 +1,7 @@
-using BardicBytes.BardicFramework.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace BardicBytes.BardicFramework.ActorModules
+namespace BB.BardicFramework.ActorModules
 {
     [RequireComponent(typeof(Rigidbody))]
     public class CollisionModule : ActorModule

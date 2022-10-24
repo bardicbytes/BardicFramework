@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace BardicBytes.BardicFramework.Actions
+namespace BB.BardicFramework.Actions
 {
-    public abstract class ActionPerformer : Core.ActorModule { }
+    public abstract class ActionPerformer : ActorModule { }
 
     public abstract class ActionPerformer<TAction, TPerformer, TRuntime> : ActionPerformer 
         where TAction : Action<TAction, TPerformer, TRuntime>

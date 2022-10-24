@@ -1,13 +1,13 @@
-using System.Collections;
+//alex@bardicbytes.com
 using System.Collections.Generic;
 using UnityEngine;
 #if ENABLE_CLOUD_SERVICES_ANALYTICS
 using UnityEngine.Analytics;
 #endif
 
-namespace BardicBytes.BardicFramework.Platform
+namespace BB.BardicFramework.Platform
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Platform + "Unity Analytics")]
+    [CreateAssetMenu(menuName = Prefixes.Platform + "Unity Analytics")]
     public class UnityAnalyticsManager : AnalyticsManager
     {
         public override void SendEvent(string eventname)

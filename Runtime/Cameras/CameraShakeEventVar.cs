@@ -1,11 +1,11 @@
-﻿using BardicBytes.BardicFramework.Core;
-using BardicBytes.BardicFramework.Core.EventVars;
+﻿//alex@bardicbytes.com
+using BB.BardicFramework.EventVars;
 using UnityEngine;
 
 
-namespace BardicBytes.BardicFramework.Cameras
+namespace BB.BardicFramework.Cameras
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Cameras+ "Event Var: Camera Shake")]
+    [CreateAssetMenu(menuName = Prefixes.Cameras+ "Event Var: Camera Shake")]
 
     public class CameraShakeEventVar : GenericEventVar<CameraShakeConfig>
     {

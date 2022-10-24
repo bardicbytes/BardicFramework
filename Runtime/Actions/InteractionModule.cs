@@ -1,8 +1,8 @@
-﻿using BardicBytes.BardicFramework.Core;
+﻿//alex@bardicbytes.com
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Actions
+namespace BB.BardicFramework.Actions
 {
     public class InteractionEvent : UnityEngine.Events.UnityEvent<Actor> { }
 

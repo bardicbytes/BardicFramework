@@ -1,10 +1,10 @@
-﻿
+﻿//alex@bardicbytes.com
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Effects
+namespace BB.BardicFramework.Effects
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Effects + "Bank")]
+    [CreateAssetMenu(menuName = Prefixes.Effects + "Bank")]
     public class EffectsBank : ScriptableObject
     {
         [SerializeField]

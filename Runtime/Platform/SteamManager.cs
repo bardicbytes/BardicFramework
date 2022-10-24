@@ -1,8 +1,4 @@
-/**
- * alex@bardicbytes.com
- * Copyright (c) 2020 Bardic Bytes, LLC
- **/
-
+//alex@bardicbytes.com
 #pragma warning disable 414
 
 //#if UNITY_EDITOR || DRM_FREE || UNITY_ANDROID || !(STEAMWORKS_NET || UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
@@ -18,15 +14,15 @@ using Steamworks;
 using System;
 using UnityEngine.Audio;
 using SF = UnityEngine.SerializeField;
-using BardicBytes.BardicFramework.Core.EventVars;
+using BB.BardicFramework.EventVars;
 
-namespace BardicBytes.BardicFramework.Platform
+namespace BB.BardicFramework.Platform
 {
 	//
 	// The SteamManager provides a base implementation of Steamworks.NET on which you can build upon.
 	// It handles the basics of starting up and shutting down the SteamAPI for use.
 	
-	[CreateAssetMenu(menuName = Core.Prefixes.Platform + "Steam")]
+	[CreateAssetMenu(menuName = Prefixes.Platform + "Steam")]
 	public class SteamManager : PlatformManager
 	{
 		//public const int APP_ID = 1471600;

@@ -2,7 +2,7 @@
 using UnityEngine;
 using SF = UnityEngine.SerializeField;
 
-namespace BardicBytes.BardicFramework.AssetManagement
+namespace BB.BardicFramework.AssetManagement
 {
     public abstract class ObjectCollection : ScriptableObject
     {

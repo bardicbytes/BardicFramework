@@ -1,10 +1,10 @@
-﻿using BardicBytes.BardicFramework.Core;
-using BardicBytes.BardicFramework.Core.EventVars;
+﻿//alex@bardicbytes.com
+using BB.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BardicBytes.BardicFramework.Effects
+namespace BB.BardicFramework.Effects
 {
-    [CreateAssetMenu(menuName = Core.Prefixes.Effects+"Sound Effect")]
+    [CreateAssetMenu(menuName = Prefixes.Effects+"Sound Effect")]
     public class SoundEffect : GenericEventVar<SoundEffect.PlayRequest>
     {
         [System.Serializable]
