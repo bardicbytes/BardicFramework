@@ -1,25 +1,22 @@
 {
   "name": "com.BardicBytes.BardicFramework",
-  "version": "1.2.3",
-  "displayName": "Package Example",
-  "description": "This is an example package",
-  "unity": "2019.1",
+  "version": "0.1.0",
+  "displayName": "Bardic Framework",
+  "description": "Modular functionality for any game made with Unity.",
+  "unity": "2020.1",
   "unityRelease": "0b5",
-  "documentationUrl": "https://example.com/",
-  "changelogUrl": "https://example.com/changelog.html",
-  "licensesUrl": "https://example.com/licensing.html",
-  "dependencies": {
-    "com.[company-name].some-package": "1.0.0",
-    "com.[company-name].other-package": "2.0.0"
- },
+  "documentationUrl": "https://bardicbytes.com/",
+  "changelogUrl": "https://bardicbytes.com/",
+  "licensesUrl": "https://bardicbytes.com/",
+  "dependencies": {},
  "keywords": [
-    "keyword1",
-    "keyword2",
-    "keyword3"
+    "Unity",
+    "Framework",
+    "BardicBytes"
   ],
   "author": {
-    "name": "Unity",
-    "email": "unity@example.com",
-    "url": "https://www.unity3d.com"
+    "name": "Alex Pizzini",
+    "email": "alex@bardicbytes.com",
+    "url": "https://www.bardicbytes.com"
   }
 }
