@@ -1,14 +1,9 @@
 {
-  "name": "com.BardicBytes.BardicFramework",
+  "name": "com.bardicbytes.bardicframework",
   "version": "0.1.0",
   "displayName": "Bardic Framework",
   "description": "Modular functionality for any game made with Unity.",
   "unity": "2020.1",
-  "unityRelease": "0b5",
-  "documentationUrl": "https://bardicbytes.com/",
-  "changelogUrl": "https://bardicbytes.com/",
-  "licensesUrl": "https://bardicbytes.com/",
-  "dependencies": {},
  "keywords": [
     "Unity",
     "Framework",
