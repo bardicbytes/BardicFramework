@@ -1,8 +1,9 @@
 //alex@bardicbytes.com
+using BB.BardicFramework;
 using BB.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BB.BardicFramework.ActorModules
+namespace BB.BardicSamples.ActorModules
 {
     [RequireComponent(typeof(EventVarInstancer))]
     /// <summary>

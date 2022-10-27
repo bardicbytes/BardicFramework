@@ -1,8 +1,9 @@
 //alex@bardicbytes.com
+using BB.BardicFramework;
 using BB.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BB.BardicFramework.ActorModules
+namespace BB.BardicSamples.ActorModules
 {
     /// <summary>
     /// Moves the actor toward's the first Tagged Target Actor, the position is offset by center of mass.

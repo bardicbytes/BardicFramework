@@ -1,8 +1,8 @@
 //alex@bardicbytes.com
-using BB.BardicFramework.ActorModules;
+using BB.BardicFramework;
 using UnityEngine;
 
-namespace BB.BardicFramework.ActorModules
+namespace BB.BardicSamples.ActorModules
 {
     [RequireComponent(typeof(MovePositionModule))]
     [RequireComponent(typeof(CollisionModule))]
