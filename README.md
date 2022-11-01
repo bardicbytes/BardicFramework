@@ -1,7 +1,4 @@
-# The Bardic Framework for Unity
-## From BardicBytes
-
-# Core Features
+# The **BardicBytes Framework** for Unity Development
 ## Actors
 The purpose of the actors system is to centralize and standardize connectivity between GameObjects and MonoBehaviours inside of and between Scenes.
 
@@ -50,7 +47,7 @@ This implementation of ActorModule has an array of ActorTags with which it regis
 ## Effects
 An Eventvar based solution for playing audio and visual effects. Play an effect anywhere anytime with an asset reference.
 
-## More
+## More Features
 ### ScriptableObjectCollection
 
 ### Pool
