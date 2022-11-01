@@ -3,7 +3,7 @@ using BB.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework
+namespace BB.BardicFramework.EventVars
 {
     public class EventVarInstancer : ActorModule
     {

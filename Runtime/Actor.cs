@@ -1,4 +1,5 @@
 //alex@bardicbytes.com
+//https://github.com/bardicbytes/BardicFramework
 using BB.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;

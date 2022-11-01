@@ -3,7 +3,7 @@ using BB.BardicFramework.EventVars;
 using UnityEditor;
 using UnityEngine;
 
-namespace BB.BardicFramework
+namespace BB.BardicFramework.EventVars
 {
     [System.Serializable]
     public class EventVarInstanceField

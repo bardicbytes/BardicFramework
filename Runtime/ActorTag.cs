@@ -1,10 +1,11 @@
+using BB.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BB.BardicFramework
 {
     [CreateAssetMenu(menuName = Prefixes.BardicBase+"Actor Tag")]
-    public class ActorTag : EventVars.GenericEventVar<List<TagModule>>
+    public class ActorTag : GenericEventVar<List<TagModule>>
     {
         [field: SerializeField] public string DisplayName { get; set; }
         [field: SerializeField] public bool UniqueTag { get; set; }
