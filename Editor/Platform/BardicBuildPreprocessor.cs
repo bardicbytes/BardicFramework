@@ -1,7 +1,9 @@
+//alex@bardicbytes.com
+using BardicBytes.BardicFramework.Platform;
 using UnityEditor.Build;
 using UnityEngine;
 
-namespace BB.BardicFramework.Platform.Editor
+namespace BardicBytes.BardicFrameworkEditor.Platform
 {
     public class BardicBuildPreprocessor : IPreprocessBuildWithReport
     {

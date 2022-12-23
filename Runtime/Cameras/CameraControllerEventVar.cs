@@ -1,12 +1,15 @@
 ﻿//alex@bardicbytes.com
-using BB.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BB.BardicFramework.Cameras
+namespace BardicBytes.BardicFramework.Cameras
 {
     [CreateAssetMenu(menuName = Prefixes.Cameras + "Event Var: Camera Controller")]
-    public class CameraControllerEventVar : GenericEventVar<CameraController> 
+    public class CameraControllerEventVar : SimpleGenericEventVar<CameraController> 
     {
-        public override CameraController To(EventVarInstanceField bc) => (CameraController)bc.SystemObjectValue;
+        public override CameraController To(EventVars.EVInstData bc) => (CameraController)bc.SystemObjectValue;
+
+        protected override void SetInitialvalueOfInstanceConfig(CameraController val, EventVars.EVInstData config) => config.UnityObjectValue = val;
+
     }
 }

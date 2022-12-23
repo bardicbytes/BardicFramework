@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     /// <summary>
     /// This is a good state machine to use if everything can/should be defined procedurally.

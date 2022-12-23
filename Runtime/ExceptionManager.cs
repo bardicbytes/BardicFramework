@@ -1,9 +1,9 @@
 //alex@bardicbytes.com
-using BB.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.EventVars;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     public class ExceptionManager : MonoBehaviour
     {

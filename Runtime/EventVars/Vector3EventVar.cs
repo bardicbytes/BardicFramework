@@ -1,12 +1,12 @@
 ﻿//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     [CreateAssetMenu(menuName = Prefixes.EV + "Vector3")]
     public class Vector3EventVar : GenericMinMaxEventVar<Vector3>, IMinMax<Vector3>
     {
-        public override Vector3 To(EventVarInstanceField bc) => bc.Vector3Value;
+        public override Vector3 To(EventVars.EVInstData bc) => bc.Vector3Value;
 
         public override Vector3 MinMaxClamp(Vector3 val)
         {
@@ -18,5 +18,7 @@ namespace BB.BardicFramework.EventVars
                 return new Vector3(Mathf.Max(val.x, minValue.x), Mathf.Max(val.y, minValue.y), Mathf.Max(val.z, minValue.z));
             else return val;
         }
+
+        protected override void SetInitialvalueOfInstanceConfig(Vector3 val, EventVars.EVInstData config) => config.Vector3Value = val;
     }
 }

@@ -14,9 +14,9 @@ using Steamworks;
 using System;
 using UnityEngine.Audio;
 using SF = UnityEngine.SerializeField;
-using BB.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.EventVars;
 
-namespace BB.BardicFramework.Platform
+namespace BardicBytes.BardicFramework.Platform
 {
 	//
 	// The SteamManager provides a base implementation of Steamworks.NET on which you can build upon.

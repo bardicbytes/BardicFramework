@@ -1,6 +1,6 @@
 ﻿//alex@bardicbytes.com
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     public class EventVarListener : BaseEventVarListener{}
 }

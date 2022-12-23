@@ -1,7 +1,7 @@
 ﻿//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     [CreateAssetMenu(menuName = Prefixes.EV + "Float")]
     public class FloatEventVar : GenericMinMaxEventVar<float>, IMinMax<float>
@@ -16,6 +16,8 @@ namespace BB.BardicFramework.EventVars
                 return Mathf.Max(val, minValue);
             else return val;
         }
-        public override float To(EventVarInstanceField bc) => bc.FloatValue;
+        public override float To(EventVars.EVInstData bc) => bc.FloatValue;
+
+        protected override void SetInitialvalueOfInstanceConfig(float val, EventVars.EVInstData config) => config.FloatValue = val;
     }
 }

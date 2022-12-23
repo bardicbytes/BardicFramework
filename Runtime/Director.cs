@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     public class Director : MonoBehaviour
     {

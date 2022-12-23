@@ -1,4 +1,4 @@
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     public static class MathHelper
     {

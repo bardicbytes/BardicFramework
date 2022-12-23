@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Analytics;
 #endif
 
-namespace BB.BardicFramework.Platform
+namespace BardicBytes.BardicFramework.Platform
 {
     [CreateAssetMenu(menuName = Prefixes.Platform + "Unity Analytics")]
     public class UnityAnalyticsManager : AnalyticsManager

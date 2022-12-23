@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace BB.BardicFramework.Cameras
+namespace BardicBytes.BardicFramework.Cameras
 {
     public class CameraScaled : MonoBehaviour
     {

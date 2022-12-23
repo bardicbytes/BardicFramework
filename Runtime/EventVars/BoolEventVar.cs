@@ -1,20 +1,22 @@
 ﻿//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     [CreateAssetMenu(menuName = Prefixes.EV+"Bool")]
 
-    public class BoolEventVar : GenericEventVar<bool>
+    public class BoolEventVar : SimpleGenericEventVar<bool>
     {
         public void Toggle() => Raise(!Value);
-        public override bool To(EventVarInstanceField bc) => bc.BoolValue;
+        public override bool To(EventVars.EVInstData bc) => bc.BoolValue;
 
         #if UNITY_EDITOR
         public void PropField()
         {
 
         }
-        #endif
+
+        protected override void SetInitialvalueOfInstanceConfig(bool val, EventVars.EVInstData config) => config.BoolValue = val;
+#endif
     }
 }

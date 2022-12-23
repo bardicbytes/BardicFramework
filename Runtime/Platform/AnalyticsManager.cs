@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace BB.BardicFramework.Platform
+namespace BardicBytes.BardicFramework.Platform
 {
     public abstract class AnalyticsManager : ScriptableObject
     {

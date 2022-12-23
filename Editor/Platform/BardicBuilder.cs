@@ -1,11 +1,13 @@
 //alex@bardicbytes.com
 using UnityEditor;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Diagnostics;
 using System.IO;
+using BardicBytes.BardicFramework.Platform;
+using BardicBytes.BardicFramework;
 
-namespace BB.BardicFramework.Platform.Editor
+namespace BardicBytes.BardicFrameworkEditor.Platform
 {
     [CreateAssetMenu(menuName = Prefixes.Platform+"Builder")]
     public class BardicBuilder : ScriptableObject
@@ -20,7 +22,10 @@ namespace BB.BardicFramework.Platform.Editor
         public BuildTargetGroup group = BuildTargetGroup.Standalone;
         public string[] defines;
         public string modifier = "";
+        public string exeName = "fileName";
         public string path = "";
+
+        string PathSuffix => target == BuildTarget.WebGL ? "" : string.Format(@"\{0}.exe", exeName);
 
         //private const string BACKUP = "BackUpThisFolder_ButDontShipItWithYourGame";
 
@@ -32,9 +37,8 @@ namespace BB.BardicFramework.Platform.Editor
             {
                 path = EditorUtility.SaveFolderPanel("Choose Location of Built Game", "", "");
             }
-            BardicBuildPostprocessor.path = path;
+            BardicBuildPostprocessor.lastBuilderPath = path;
             if (string.IsNullOrEmpty(path)) return;
-            //UnityEngine.Debug.Log(name+" onPreBuild.Invoke()?");
             onPreBuild.Invoke();
 
             PlayerSettings.SetScriptingDefineSymbolsForGroup(group, defines);
@@ -54,22 +58,28 @@ namespace BB.BardicFramework.Platform.Editor
         public void BuildGame()
         {
             EditorUtility.DisplayProgressBar("Building Game", "Working...", .5f);
-            SetEnvironment();
+            try
+            {
+                SetEnvironment();
 
-            string[] scenePaths = new string[scenes.Length];
-            for (int i = 0; i < scenes.Length; i++)
-                scenePaths[i] = AssetDatabase.GetAssetPath(scenes[i]);
+                string[] scenePaths = new string[scenes.Length];
+                for (int i = 0; i < scenes.Length; i++)
+                    scenePaths[i] = AssetDatabase.GetAssetPath(scenes[i]);
 
-            var pathSuffix = target == BuildTarget.WebGL ? "" : @"\warDrive.exe";
-            var report = BuildPipeline.BuildPlayer(scenePaths, path + pathSuffix, target, GetBuildOptions());
-                      
-            
-            //Compress(GetFiles(path), path + @"\" + "warDrive" + modifier + ".zip");
+                var report = BuildPipeline.BuildPlayer(scenePaths, path + PathSuffix, target, GetBuildOptions());
 
-            OpenFolder();
-            var bi = BuildInfo.LoadDefault();
-            EditorUtility.ClearProgressBar();
-            UnityEngine.Debug.Log("Built " + name +" "+bi+" " +" to " + path);
+                OpenFolder();
+                var bi = BuildInfo.LoadDefault();
+                UnityEngine.Debug.Log("Built " + name + " " + bi + " " + " to " + path);
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                EditorUtility.ClearProgressBar();
+            }
 
             BuildOptions GetBuildOptions()
             {
@@ -80,101 +90,7 @@ namespace BB.BardicFramework.Platform.Editor
 
                 return bo;
             }
-
-            //void Compress(IEnumerable<string> filePaths, string zipFileOutputPath)
-            //{
-            //    List<byte[]> buffers = new List<byte[]>();
-            //    List<string> paths = new List<string>();
-
-            //    foreach (var f in filePaths)
-            //    {
-            //        if (f.Contains(BACKUP))
-            //        {
-            //            buildLog.AppendLine("skipping backup file " + f);
-            //            continue;
-            //        }
-
-            //        if (File.Exists(f))
-            //        {
-            //            buffers.Add(File.ReadAllBytes(f));
-            //            paths.Add(f);
-            //        }
-            //        else if (Directory.Exists(f))
-            //        {
-            //            paths.Add(f);
-            //            buffers.Add(null);
-            //        }
-            //    }
-            //    buildLog.AppendLine("zipping " + zipFileOutputPath);
-
-            //    using (var zipToOpen = new FileStream(zipFileOutputPath, FileMode.CreateNew))
-            //    {
-            //        using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
-            //        {
-            //            for(int i =0; i < buffers.Count; i++)
-            //            {
-            //                var e = paths[i].Replace(path+@"\", "") + (buffers[i] == null ? @"\" : "");
-            //                var zipArchiveEntry = archive.CreateEntry(e);
-            //                using (var zipStream = zipArchiveEntry.Open())
-            //                {
-            //                    if (buffers[i] == null)
-            //                    {
-            //                        buildLog.AppendLine("dir\t\t" + zipArchiveEntry);
-            //                    }
-            //                    else
-            //                    {
-            //                        buildLog.AppendLine(buffers[i].Length+ " bytes\t\t" + zipArchiveEntry);
-            //                        zipStream.Write(buffers[i], 0, buffers[i].Length);
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-
-            //    File.WriteAllText(Path.Combine(path, "build.log"), buildLog.ToString());
-            //}
-
-            ////https://stackoverflow.com/questions/929276/how-to-recursively-list-all-the-files-in-a-directory-in-c
-            //IEnumerable<string> GetFiles(string path)
-            //{
-            //    Queue<string> queue = new Queue<string>();
-            //    queue.Enqueue(path);
-            //    while (queue.Count > 0)
-            //    {
-            //        path = queue.Dequeue();
-            //        try
-            //        {
-            //            foreach (string subDir in Directory.GetDirectories(path))
-            //            {
-            //                queue.Enqueue(subDir);
-            //            }
-            //        }
-            //        catch (System.Exception ex)
-            //        {
-            //            UnityEngine.Debug.LogWarning(ex);
-            //        }
-            //        IEnumerable<string> files = null;
-            //        try
-            //        {
-            //            files = Directory.GetFiles(path).Concat(Directory.GetDirectories(path));
-
-            //        }
-            //        catch (System.Exception ex)
-            //        {
-            //            UnityEngine.Debug.LogWarning(ex);
-            //        }
-            //        if (files != null)
-            //        {
-            //            var e = files.GetEnumerator();
-            //            while (e.MoveNext())
-            //            {
-            //                yield return e.Current;
-            //            }
-            //        }
-            //    }
-            //}
         }
-
         
 
         [ContextMenu("Open Folder")]

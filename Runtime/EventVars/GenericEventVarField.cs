@@ -3,7 +3,7 @@
 using System;
 using UnityEngine;
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     public abstract class BaseEventVarField
     {
@@ -23,6 +23,7 @@ namespace BB.BardicFramework.EventVars
         public EvT srcEV = default;
 
         public Type EventVarType => typeof(EvT);
+        public OutT Value => Eval();
 
         private OutT Eval()
         {
@@ -34,7 +35,7 @@ namespace BB.BardicFramework.EventVars
             {
 
             }
-            else if(module.Actor.HasActorInstance(srcEV))
+            else if(module.GetModule<EventVarInstancer>().HasInstance(srcEV))
             {
                 var ai = module.Actor.GetInstance(srcEV);
                 if(ai == null && srcEV.RequireInstancing)

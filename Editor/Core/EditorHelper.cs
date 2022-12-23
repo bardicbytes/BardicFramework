@@ -2,23 +2,22 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 
-namespace BB.BardicFramework.Editor
+namespace BardicBytes.BardicFrameworkEditor
 {
     public static class EditorHelper
     {
-        public static object GetValue(this SerializedProperty property)
+        //https://forum.unity.com/threads/get-a-general-object-value-from-serializedproperty.327098/
+        public static object GetValue(this SerializedProperty prop)
         {
-            object obj = property.serializedObject.targetObject;
+            object obj = prop.serializedObject.targetObject;
 
-            FieldInfo field = null;
-            foreach (var path in property.propertyPath.Split('.'))
+            var paths = prop.propertyPath.Split('.');
+            for(int i =0; i < paths.Length; i++)
             {
 #pragma warning disable 168
                 try
                 {
-                    var type = obj.GetType();
-                    field = type.GetField(path);
-                    obj = field.GetValue(obj);
+                    obj = obj.GetType().GetField(paths[i]).GetValue(obj);
                 }
                 catch(System.NullReferenceException nre)
                 {
@@ -31,28 +30,25 @@ namespace BB.BardicFramework.Editor
             return obj;
         }
 
-        // Sets value from SerializedProperty - even if value is nested
-        public static void SetValue(this SerializedProperty property, object val)
+        public static void SetValue(this SerializedProperty prop, object val)
         {
-            object obj = property.serializedObject.targetObject;
+            object obj = prop.serializedObject.targetObject;
 
-            List<KeyValuePair<FieldInfo, object>> list = new List<KeyValuePair<FieldInfo, object>>();
+            List<KeyValuePair<FieldInfo, object>> propsList = new List<KeyValuePair<FieldInfo, object>>();
 
             FieldInfo field = null;
-            foreach (var path in property.propertyPath.Split('.'))
+            foreach (var path in prop.propertyPath.Split('.'))
             {
-                var type = obj.GetType();
-                field = type.GetField(path);
-                list.Add(new KeyValuePair<FieldInfo, object>(field, obj));
+                field = obj.GetType().GetField(path);
+                propsList.Add(new KeyValuePair<FieldInfo, object>(field, obj));
                 obj = field.GetValue(obj);
             }
 
-            // Now set values of all objects, from child to parent
-            for (int i = list.Count - 1; i >= 0; --i)
+            var v = val;
+            for (int i = 0; i < propsList.Count; i++)
             {
-                list[i].Key.SetValue(list[i].Value, val);
-                // New 'val' object will be parent of current 'val' object
-                val = list[i].Value;
+                propsList[i].Key.SetValue(propsList[i].Value, v);
+                v = propsList[i].Value;
             }
         }
     }

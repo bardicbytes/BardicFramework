@@ -1,7 +1,7 @@
 ﻿//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     public class BoolEventVarListener : GenericBaseEventVarListener<bool>
     {

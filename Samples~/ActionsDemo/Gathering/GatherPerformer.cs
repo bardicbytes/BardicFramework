@@ -1,9 +1,9 @@
-using BB.BardicFramework.Actions;
+using BardicBytes.BardicFramework.Actions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicSamples.Demo
+namespace BardicBytes.BardicSamples.Demo
 {
     public class GatherPerformer : ActionPerformer<GatherAction, GatherPerformer, GatherRuntime>
     {

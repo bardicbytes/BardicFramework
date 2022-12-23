@@ -1,7 +1,7 @@
 //alex@bardicbytes.com
 using UnityEngine;
 
-namespace BB.BardicFramework.Platform
+namespace BardicBytes.BardicFramework.Platform
 {
     [CreateAssetMenu(menuName = Prefixes.Platform + "Android")]
     public class AndroidManager : PlatformManager

@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace BB.BardicFramework.Platform
+namespace BardicBytes.BardicFramework.Platform
 {
     [CreateAssetMenu(menuName = Prefixes.Platform + "DRM Free")]
     public class NoDrmManager : PlatformManager

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework.Effects
+namespace BardicBytes.BardicFramework.Effects
 {
     [CreateAssetMenu(menuName = Prefixes.Effects + "Bank")]
     public class EffectsBank : ScriptableObject

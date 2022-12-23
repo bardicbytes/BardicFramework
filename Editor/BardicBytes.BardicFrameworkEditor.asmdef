@@ -1,7 +1,9 @@
 {
-    "name": "BardicFramework",
-    "rootNamespace": "BB.BardicFramework",
-    "references": [],
+    "name": "BardicFrameworkEditor",
+    "rootNamespace": "BardicBytes.BardicFrameworkEditor",
+    "references": [
+        "GUID:efe3a70e628f23341b93b67882079d66"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

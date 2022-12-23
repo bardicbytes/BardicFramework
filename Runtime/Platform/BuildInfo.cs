@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace BB.BardicFramework.Platform
+namespace BardicBytes.BardicFramework.Platform
 {
     [System.Serializable]
     public struct BuildInfo

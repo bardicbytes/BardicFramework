@@ -1,9 +1,9 @@
 ﻿//alex@bardicbytes.com
 using System.Collections.Generic;
 using UnityEngine;
-using static BB.BardicFramework.SimpleStateMachine;
+using static BardicBytes.BardicFramework.SimpleStateMachine;
 
-namespace BB.BardicFramework.Actions
+namespace BardicBytes.BardicFramework.Actions
 {
     [System.Serializable]
     public abstract class ActionRuntime

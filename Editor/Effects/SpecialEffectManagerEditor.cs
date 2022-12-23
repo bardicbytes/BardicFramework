@@ -1,6 +1,7 @@
+//alex@bardicbytes.com
 using UnityEditor;
 
-namespace BB.BardicFramework.Effects.Editor
+namespace BardicBytes.BardicFrameworkEditor.Effects
 {
     [CustomEditor(typeof(SpecialEffectManagerEditor))]
     public class SpecialEffectManagerEditor : UnityEditor.Editor

@@ -1,14 +1,16 @@
 ﻿//alex@bardicbytes.com
-using BB.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.EventVars;
 using UnityEngine;
 
 
-namespace BB.BardicFramework.Cameras
+namespace BardicBytes.BardicFramework.Cameras
 {
     [CreateAssetMenu(menuName = Prefixes.Cameras+ "Event Var: Camera Shake")]
 
-    public class CameraShakeEventVar : GenericEventVar<CameraShakeConfig>
+    public class CameraShakeEventVar : SimpleGenericEventVar<CameraShakeConfig>
     {
-        public override CameraShakeConfig To(EventVarInstanceField bc) => (CameraShakeConfig)bc.SystemObjectValue;
+        public override CameraShakeConfig To(EventVars.EVInstData bc) => (CameraShakeConfig)bc.SystemObjectValue;
+
+        protected override void SetInitialvalueOfInstanceConfig(CameraShakeConfig val, EventVars.EVInstData config) => config.SystemObjectValue = val;
     }
 }

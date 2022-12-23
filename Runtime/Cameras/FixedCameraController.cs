@@ -1,8 +1,8 @@
 ﻿//alex@bardicbytes.com
-using BB.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BB.BardicFramework.Cameras
+namespace BardicBytes.BardicFramework.Cameras
 {
     public class FixedCameraController : CameraController
     {

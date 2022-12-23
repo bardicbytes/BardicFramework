@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+//alex@bardicbytes.com
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -9,7 +8,7 @@ using UnityEditor;
 #endif
 
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework.Utilities
 {
     public static class DataHelper
     {

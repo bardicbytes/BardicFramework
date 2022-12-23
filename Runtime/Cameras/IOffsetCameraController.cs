@@ -1,4 +1,4 @@
-﻿namespace BB.BardicFramework.Cameras
+﻿namespace BardicBytes.BardicFramework.Cameras
 {
     public interface IOffsetCameraController
     {

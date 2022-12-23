@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework.Cameras
+namespace BardicBytes.BardicFramework.Cameras
 {
     [System.Serializable]
-    public struct CameraShakeConfig
+    public class CameraShakeConfig
     {
         public bool zAffectsBloom;
         public float magnitude;
@@ -26,7 +26,7 @@ namespace BB.BardicFramework.Cameras
         }
     }
 
-    public abstract class CameraController : MonoBehaviour
+    public abstract class CameraController : ActorModule
     {
         [SerializeField]
         protected CameraManager manager;
@@ -50,11 +50,12 @@ namespace BB.BardicFramework.Cameras
         protected Vector3 initLocalPos;
 
 
-        protected virtual void OnValidate()
+        protected override void OnValidate()
         {
+            base.OnValidate();
             if (targetCam == null) targetCam = GetComponent<Camera>();
             targetCam.GetComponentsInChildren(true, childCameras);
-            if (childCameras.Contains(targetCam)) childCameras.Remove(targetCam);
+            if (childCameras != null && childCameras.Contains(targetCam)) childCameras.Remove(targetCam);
         }
 
         protected virtual void Awake()

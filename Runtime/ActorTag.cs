@@ -1,16 +1,18 @@
-using BB.BardicFramework.EventVars;
+//alex@bardicbytes.com
+using BardicBytes.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     [CreateAssetMenu(menuName = Prefixes.BardicBase+"Actor Tag")]
-    public class ActorTag : GenericEventVar<List<TagModule>>
+    public class ActorTag : SimpleGenericEventVar<List<TagModule>>
     {
         [field: SerializeField] public string DisplayName { get; set; }
         [field: SerializeField] public bool UniqueTag { get; set; }
 
-        public Actor Actor0 => ActiveActors[0];
+        public Actor Actor0 => ActiveActors[0].Actor;
+        public int Count =>  Value.Count;
 
         public List<TagModule> ActiveActors { get => base.Value; set => base.Raise(value); }
         public bool HasActiveActors => ActiveActors.Count > 0;
@@ -27,7 +29,7 @@ namespace BB.BardicFramework
             if (DisplayName == "") DisplayName = name;
         }
 
-        public override List<TagModule> To(EventVarInstanceField bc)
+        public override List<TagModule> To(EventVars.EVInstData bc)
         {
             return bc.SystemObjectValue as List<TagModule>;
         }
@@ -51,8 +53,17 @@ namespace BB.BardicFramework
 
         public void Deregister(TagModule tagMod)
         {
+            InitActorList();
+
             Debug.Assert(ActiveActors != null && ActiveActors.Contains(tagMod));
             ActiveActors.Remove(tagMod);
+        }
+
+        public bool IsTagged(TagModule tagMod)
+        {
+            InitActorList();
+
+            return ActiveActors.Contains(tagMod);
         }
 
         public void SetTaggedActorsActive(bool active)
@@ -74,5 +85,7 @@ namespace BB.BardicFramework
             }
             return modules;
         }
+
+        protected override void SetInitialvalueOfInstanceConfig(List<TagModule> val, EventVars.EVInstData config) => config.SystemObjectValue = val;
     }
 }

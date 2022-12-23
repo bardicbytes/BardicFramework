@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 
-namespace BB.BardicFramework.Utilities
+namespace BardicBytes.BardicFramework.Utilities
 {
     public class CameraImageCompositor : MonoBehaviour
     {

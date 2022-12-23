@@ -7,29 +7,12 @@ using UnityEngine.Events;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
-    public abstract class GenericEventVar<T> : AutoEvaluatingEventVar<T,T> { }
-
-    public abstract class AutoEvaluatingEventVar<InT,OutT> : EvaluatingEventVar<InT, OutT> where InT : OutT
-    {
-        public override OutT Eval(InT val) => val; //a lil shortcut
-    }
-
-    public abstract class EvaluatingEventVar<InT, OutT> : BaseGenericEventVar<InT, OutT, EvaluatingEventVar<InT,OutT>>{}
 
     public abstract class BaseGenericEventVar<InT, OutT, EvT> : EventVar where EvT : BaseGenericEventVar<InT, OutT, EvT>
     {
-        [Serializable]
-        public class EventVarInstanceConfig : EventvarInstanceField<InT, OutT, EvT, EventVarInstanceConfig>
-        {
-#if UNITY_EDITOR
-            public override void GenericPropField(Rect position, SerializedProperty evifProp)
-            {
-                base.GenericPropField(position, evifProp);
-            }
-#endif
-        }
+        public static implicit operator OutT(BaseGenericEventVar<InT, OutT, EvT> ev) => ev.Value;
 
         /// <summary>
         /// The Actor's instance Value, the source asset's Value, or this field's fallback value; in that order.
@@ -68,9 +51,7 @@ namespace BB.BardicFramework.EventVars
         [HideInInspector]
         protected bool raiseOnInit = false;
 
-        protected List<Actor> activeInstancers;
         protected bool isLocked = false;
-        public override object UntypedOutputValue => Value;
 
         public InT InitialValue => initialValue;
         public bool IsLocked => isLocked;
@@ -95,6 +76,8 @@ namespace BB.BardicFramework.EventVars
         public override bool HasValue { get => true; }
         public override Type StoredValueType => typeof(InT);
         public override Type OutputValueType => typeof(OutT);
+
+        public override int TotalListeners => base.TotalListeners + typedEvent.GetPersistentEventCount();
 
         protected override void OnValidate()
         {
@@ -130,22 +113,6 @@ namespace BB.BardicFramework.EventVars
             else SetInitialValue(initialValue);
         }
 
-        public abstract InT To(EventVarInstanceField bc);
-
-        public override void SetInitialValue(EventVarInstanceField bc)
-        {
-            InT v = default;
-            v = To(bc);
-            SetInitialValue(v);
-        }
-
-        public void SetInitialValue(InT initialValue)
-        {
-            this.initialValue = initialValue;
-            if (isInitialized) ChangeCurrentValue(initialValue);
-            else UntypedStoredValue = initialValue;
-        }
-
 
         public override string ToString() => GetValueString();
 
@@ -160,22 +127,7 @@ namespace BB.BardicFramework.EventVars
         /// Clones the source EventVar asset, and puts it in a config
         /// </summary>
         /// <returns>A new EventvarInstanceConfig upcast as a BaseConfig</returns>
-        public override EventVarInstanceField CreateInstanceConfig()
-        {
-            var v = new EventVarInstanceConfig();
-
-            //if this isn't a clone, we're validating assets
-            if (this.IsActorInstance)
-            {
-                v.RuntimeInstance = (EvT)this;
-                v.SetSrc((EvT)this.CloneSource);
-            }
-            else
-            {
-                v.SetSrc((EvT)this);
-            }
-            return v;
-        }
+        public override EVInstData CreateInstanceConfig() => new EVInstData(this);
 
         public override void Raise()
         {
@@ -190,7 +142,7 @@ namespace BB.BardicFramework.EventVars
             base.Raise();
         }
 
-        public virtual void RaisePassthrough(GenericEventVar<InT> typedEventVar)
+        public virtual void RaisePassthrough(SimpleGenericEventVar<InT> typedEventVar)
         {
             if (typedEventVar == this) throw new System.Exception("No Recursive EventVar Raising!");
             Raise(typedEventVar.Value);
@@ -223,7 +175,7 @@ namespace BB.BardicFramework.EventVars
         {
             Debug.Assert(!RequireInstancing || IsActorInstance);
 
-            AddInitialListener(action);
+            AddListenerWithoutInvoke(action);
 
             if (invokeNewListeners)
             {
@@ -231,21 +183,59 @@ namespace BB.BardicFramework.EventVars
             }
         }
 
-        public void AddInitialListener(UnityAction<OutT> action)
+        public void AddListenerWithoutInvoke(UnityAction<OutT> action)
         {
             Debug.Assert(!RequireInstancing || IsActorInstance);
 
             Initialize();
             typedEvent.AddListener(action);
+            runtimeListenerCount++;
         }
 
         public virtual void RemoveListener(UnityAction<OutT> action)
         {
             Initialize();
             typedEvent.RemoveListener(action);
+            runtimeListenerCount--;
+        }
+
+        public override void SetInitialValue(EventVars.EVInstData bc)
+        {
+            InT v = default;
+            v = To(bc);
+            SetInitialValue(v);
+        }
+
+        public void SetInitialValue(InT initialValue)
+        {
+            this.initialValue = initialValue;
+            if (isInitialized) ChangeCurrentValue(initialValue);
+            else UntypedStoredValue = initialValue;
         }
 
 #if UNITY_EDITOR
+
+        public override void SetInitValueOfInstanceConfig(SerializedProperty prop, EVInstData config)
+        {
+            Debug.Assert(config != null);
+            //var c = config as EventVarInstanceConfig;
+            //Debug.Assert(c != null);
+            var val = To(prop);
+            SetInitialvalueOfInstanceConfig(val, config);
+        }
+
+        protected abstract void SetInitialvalueOfInstanceConfig(InT val, EVInstData config);
+
+        public InT To(SerializedProperty prop) => To((prop.boxedValue as EVInstData));
+        public abstract InT To(EventVars.EVInstData bc);
+
+        //public override void SetInitialValue(SerializedProperty prop)
+        //{
+        //    InT v = default;
+        //    v = To(prop);
+        //    SetInitialValue(v);
+        //}
+
         public virtual InT PropField(Rect position, UnityEditor.SerializedProperty rawProp)
         {
             EditorGUI.LabelField(position, initialValue.ToString());

@@ -1,7 +1,7 @@
 using UnityEditor;
 using System.IO;
 
-namespace BB.BardicFramework.AssetManagement.Editor
+namespace BardicBytes.BardicFrameworkEditor.AssetManagement
 {
     public class CreateAssetBundles
     {

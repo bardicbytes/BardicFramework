@@ -1,38 +1,11 @@
-﻿//Copyright 2020 Bardic Bytes, LLC
-//alex@bardicbytes.com
+﻿//alex@bardicbytes.com
 using System.Collections;
 using UnityEngine;
 
-namespace BB.BardicFramework.Cameras
+namespace BardicBytes.BardicFramework.Cameras
 {
-    [System.Serializable]
-    public class CamOffset
-    {
-        [SerializeField]
-        public bool local = false;
-        [SerializeField]
-        public Vector3 position = new Vector3(10, 5, 10);
-        [SerializeField]
-        public Vector3 lookAt = new Vector3(0, 0, 10f);
 
-        [Space]
-        [SerializeField]
-        public float aspectRatioA = 1.85f;
-        [SerializeField]
-        public float aspectRatioB = 1f;
-        [SerializeField]
-        public float orthoSizeA = 12.5f;
-        [SerializeField]
-        public float orthoSizeB = 20f;
-
-        public float GetOrthoSize(float aspectRatio)
-        {
-            float t = Mathf.InverseLerp(aspectRatioA, aspectRatioB, aspectRatio);
-            var s = Mathf.Lerp(orthoSizeA, orthoSizeB, t);
-            return s;
-        }
-    }
-
+    [RequireComponent(typeof(Camera))]
     public class PlayerCamera : CameraController, IOffsetCameraController
     {
         [SerializeField]
@@ -40,20 +13,30 @@ namespace BB.BardicFramework.Cameras
         [Space]
         [SerializeField]
         private Camera overlay = default;
+        
+        [Space]
+        [SerializeField]
+        private Vector2 distLeash = Vector2.zero;
+        [SerializeField]
+        private Vector2 leashOffset = Vector2.zero;
+        [SerializeField]
+        private bool easeRot;
         [SerializeField]
         private float camRotRate = 3;
         [SerializeField]
+        private bool easePos;
+        [SerializeField]
         private float camMoveRate = 5;
+        
+        [Space]
         [SerializeField]
         private float transitionDur = 1;
         [SerializeField]
         private CamOffset[] altOffsets;
 
-
         private CamOffset currentOffset = default;
         private CamOffset goalOffset = default;
         private Coroutine currentTransition = null;
-
 
         private float HDAR => 16 / 9f;
 
@@ -71,8 +54,8 @@ namespace BB.BardicFramework.Cameras
 
             if (altOffsets == null || altOffsets.Length == 0)
                 altOffsets = new CamOffset[3];
-
-            altOffsets[0].local = false;
+            if (altOffsets == null) return;
+            //altOffsets[0].local = false;
             altOffsets[0].position = transform.position;
             altOffsets[0].lookAt = transform.position + transform.forward;
         }
@@ -84,10 +67,9 @@ namespace BB.BardicFramework.Cameras
             SetOrthoSize(OrthoSize);
             transform.SetParent(null);
             base.Awake();
-        }
+        }   
 
-
-        protected void Update()
+        protected override void ActorUpdate()
         {
             if (!Application.isPlaying)
             {
@@ -95,7 +77,6 @@ namespace BB.BardicFramework.Cameras
                 goalOffset = currentOffset;
             }
             MoveCamera();
-
         }
 
         private void MoveCamera()
@@ -107,8 +88,9 @@ namespace BB.BardicFramework.Cameras
             Vector3 worldOffset = tt.TransformVector(currentOffset.position);
             Vector3 goalCamPos = tt.position + worldOffset;
 
-            float t = Application.isPlaying ? camMoveRate * Time.deltaTime : 1;
+            float t = easePos && Application.isPlaying ? camMoveRate * Time.deltaTime : 1;
             Vector3 p = Vector3.Lerp(initCamPos, goalCamPos, t);
+
             targetCam.transform.position = currentOffset.local ? p : currentOffset.position;
 
             Debug.DrawLine(lookAtTarget, transform.position, Color.gray);
@@ -117,9 +99,8 @@ namespace BB.BardicFramework.Cameras
                 Debug.DrawLine(initCamPos, transform.position, Color.gray, 3f);
             }
 
-
             Quaternion lookRot = Quaternion.LookRotation(lookAtTarget - transform.position, Vector3.up);
-            t = Application.isPlaying ? camRotRate * Time.deltaTime : 1;
+            t = easeRot && Application.isPlaying ? camRotRate * Time.deltaTime : 1;
             Quaternion r = Quaternion.Lerp(targetCam.transform.rotation, lookRot, t);
             targetCam.transform.rotation = currentOffset.local ? r : Quaternion.LookRotation(currentOffset.lookAt - transform.position, Vector3.up);
             SetOrthoSize(OrthoSize);
@@ -127,9 +108,11 @@ namespace BB.BardicFramework.Cameras
 
         protected override void SetOrthoSize(float s)
         {
-            Debug.Log("new OS "+s);
+//#if DEBUG
+//            if(targetCam.orthographicSize != s) Debug.Log("new OS "+s);
+//#endif
             base.SetOrthoSize(s);
-            overlay.orthographicSize = s;
+            if(overlay != null) overlay.orthographicSize = s;
         }
 
         #region offsets
@@ -190,7 +173,6 @@ namespace BB.BardicFramework.Cameras
             currentTransition = null;
         }
         #endregion
-
 
     }
 }

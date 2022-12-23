@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BB.BardicFramework.Actions
+namespace BardicBytes.BardicFramework.Actions
 {
     public abstract class ActionPerformer : ActorModule { }
 

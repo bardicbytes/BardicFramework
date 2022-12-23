@@ -1,13 +1,13 @@
 ﻿//alex@bardicbytes.com
-using BB.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace BB.BardicFramework.Effects
+namespace BardicBytes.BardicFramework.Effects
 {
     [CreateAssetMenu(menuName = Prefixes.Effects+"Special Effect")]
-    public class SpecialEffect : GenericEventVar<SpecialEffect.PlayRequest>
+    public class SpecialEffect : SimpleGenericEventVar<SpecialEffect.PlayRequest>
     {
         [SerializeField]
         private StringEventVar debugMsg = default;
@@ -43,7 +43,7 @@ namespace BB.BardicFramework.Effects
         }
 
         [System.Serializable]
-        public struct ActiveHandle
+        public class ActiveHandle
         {
             public PlayRequest request;
             //index coresponds beat index
@@ -138,7 +138,7 @@ namespace BB.BardicFramework.Effects
             }
         }
 
-        public override PlayRequest To(EventVarInstanceField bc) => (PlayRequest)bc.SystemObjectValue;
+        public override PlayRequest To(EventVars.EVInstData bc) => (PlayRequest)bc.SystemObjectValue;
 
         public Beat GetBeat(int index)
         {
@@ -186,5 +186,7 @@ namespace BB.BardicFramework.Effects
                 typedEvent.Invoke(request);
                 untypedEvent.Invoke();
         }
+
+        protected override void SetInitialvalueOfInstanceConfig(PlayRequest val, EventVars.EVInstData config) => config.SystemObjectValue = val;
     }
 }

@@ -1,6 +1,6 @@
 //alex@bardicbytes.com
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     public static class Prefixes
     {
@@ -10,5 +10,6 @@ namespace BB.BardicFramework
         public const string Cameras = BardicBase + "Cameras/";
         public const string Platform = BardicBase + "Platform/";
         public const string Actions = BardicBase + "Actions/";
+        public const string ProcGen = BardicBase + "Procedural Generation/";
     }
 }

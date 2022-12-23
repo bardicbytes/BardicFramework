@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework.Actions
+namespace BardicBytes.BardicFramework.Actions
 {
     public class InteractionEvent : UnityEngine.Events.UnityEvent<Actor> { }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework.Cameras
+namespace BardicBytes.BardicFramework.Cameras
 {
     [CreateAssetMenu(menuName = Prefixes.Cameras+"Camera Manager")]
     public class CameraManager : ScriptableObject
@@ -22,8 +22,8 @@ namespace BB.BardicFramework.Cameras
         public void Initialize()
         {
             history = new Stack<CameraController>();
-            cameraChangeEvent.AddListener(HandleCameraChange);
-            shakeEvent.AddListener(HandleShakeEv);
+            cameraChangeEvent?.AddListener(HandleCameraChange);
+            shakeEvent?.AddListener(HandleShakeEv);
         }
 
         private void HandleShakeEv(CameraShakeConfig shakeConfig)

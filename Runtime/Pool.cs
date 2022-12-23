@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     /// <summary>
     /// This class, through it's static functions, allows for the quick pooling and spawning of any component instance without the need for any setup beforhand. 

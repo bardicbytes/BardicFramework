@@ -1,8 +1,8 @@
 //alex@bardicbytes.com
-using BB.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     public class TagModule : ActorModule
     {

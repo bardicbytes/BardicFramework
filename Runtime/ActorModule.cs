@@ -1,7 +1,7 @@
 //alex@bardicbytes.com
 using UnityEngine;
 
-namespace BB.BardicFramework
+namespace BardicBytes.BardicFramework
 {
     [RequireComponent(typeof(Actor))]
     /// <summary>
@@ -9,8 +9,6 @@ namespace BB.BardicFramework
     /// </summary>
     public abstract class ActorModule : MonoBehaviour
     {
-        public static implicit operator Actor(ActorModule am) => am.Actor;
-
         [field:HideInInspector]
         [field: SerializeField]
         public Actor Actor { get; protected set; }
@@ -27,6 +25,9 @@ namespace BB.BardicFramework
             if(Actor == null) Actor = GetComponent<Actor>();
         }
 
+        /// <summary>
+        /// Call base.OnEnable when overriding.
+        /// </summary>
         protected virtual void OnEnable()
         {
             Actor.Updated += ActorUpdate;
@@ -48,11 +49,13 @@ namespace BB.BardicFramework
         /// No need to call Base.ActorFixedUpdate when extending ActorModule.
         /// </summary>
         protected virtual void ActorFixedUpdate() { }
+
+        public virtual void CollectActorDebugInfo(System.Text.StringBuilder sb)
+        { 
+        }
         
         public T GetModule<T>() where T : Component => Actor.GetModule<T>();
         public System.Collections.Generic.List<T> GetModules<T>() where T : Component => Actor.GetModules<T>();
 
     }
-
-
 }

@@ -1,8 +1,8 @@
-using BB.BardicFramework;
-using BB.BardicFramework.Actions;
+using BardicBytes.BardicFramework;
+using BardicBytes.BardicFramework.Actions;
 using UnityEngine;
 
-namespace BB.BardicSamples.Demo
+namespace BardicBytes.BardicSamples.Demo
 {
     [CreateAssetMenu(menuName = Prefixes.BardicBase+"Demo/Gather Action")]
     public class GatherAction : Action<GatherAction, GatherPerformer, GatherRuntime>

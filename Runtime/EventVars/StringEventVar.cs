@@ -1,11 +1,14 @@
 ﻿//alex@bardicbytes.com
 using UnityEngine;
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     [CreateAssetMenu(menuName = Prefixes.EV + "String")]
-    public class StringEventVar : GenericEventVar<string>
+    public class StringEventVar : SimpleGenericEventVar<string>
     {
-        public override string To(EventVarInstanceField bc) => bc.StringValue;
+        public override string To(EventVars.EVInstData bc) => bc.StringValue;
+
+        protected override void SetInitialvalueOfInstanceConfig(string val, EventVars.EVInstData config) => config.StringValue = val;
     }
+
 }

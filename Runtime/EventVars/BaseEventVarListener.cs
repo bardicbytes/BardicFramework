@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     public abstract class BaseEventVarListener : MonoBehaviour
     {}
@@ -15,7 +15,7 @@ namespace BB.BardicFramework.EventVars
         public class ConditionalResponse
         {
             public DataType requiredResponse;
-            public GenericEventVar<DataType>.UnityEvent cEvent;
+            public SimpleGenericEventVar<DataType>.UnityEvent cEvent;
         }
 
 #if UNITY_EDITOR
@@ -32,9 +32,9 @@ namespace BB.BardicFramework.EventVars
         [Space]
 
         [SerializeField]
-        protected GenericEventVar<DataType> typedEventVar = default;
+        protected SimpleGenericEventVar<DataType> typedEventVar = default;
         [SerializeField]
-        protected GenericEventVar<DataType>.UnityEvent typedResponse = default;
+        protected SimpleGenericEventVar<DataType>.UnityEvent typedResponse = default;
         [SerializeField]
         private bool invokeUntypedForDataRaise = true;
         [SerializeField]

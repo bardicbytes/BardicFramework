@@ -1,5 +1,5 @@
 ﻿//alex@bardicbytes.com
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
     public class FloatEventVarListener : GenericBaseEventVarListener<float>
     {

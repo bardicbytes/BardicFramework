@@ -3,17 +3,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
-    public interface IMinMax<T>
-    {
-        T MinValue { get; set; }
-        T MaxValue { get; set; }
-
-        T MinMaxClamp(T value);
-    }
-
     [CreateAssetMenu(menuName = Prefixes.EV+ "EvenVar without Data")]
     public class EventVar : ScriptableObject
     {
@@ -31,16 +26,24 @@ namespace BB.BardicFramework.EventVars
         public virtual Type StoredValueType => default;
         public virtual Type OutputValueType => default;
 
-        public virtual object UntypedStoredValue { get; protected set; }
+        public virtual object UntypedStoredValue { get => untypedStoredValue; protected set
+            {
+                untypedStoredValue = value;
+                debug_StoredValue = untypedStoredValue + "";
+            }
+        }
 
-        public virtual object UntypedOutputValue => UntypedStoredValue;
+        public virtual int TotalListeners => untypedEvent.GetPersistentEventCount() + runtimeListenerCount;
 
+        public object untypedStoredValue;
+
+        public string debug_StoredValue;
 
         [field: HideInInspector]
         [field: SerializeField]
         public string GUID { get; private set; } = null;
 
-        int lc = 0;
+        protected int runtimeListenerCount = 0;
 
         protected virtual void Reset()
         {
@@ -56,14 +59,14 @@ namespace BB.BardicFramework.EventVars
         protected virtual void OnValidate()
         {
             lastRaiseTime = 0;
-            lc = 0;
+            runtimeListenerCount = 0;
         }
 
         protected virtual void OnEnable()
         {
             if (untypedEvent != null)
                 untypedEvent.RemoveAllListeners();
-            lc = 0;
+            runtimeListenerCount = 0;
 
             isInitialized = false;
             Initialize();
@@ -85,16 +88,6 @@ namespace BB.BardicFramework.EventVars
             isInitialized = true;
         }
 
-        public virtual void SetInitialValue(EventVarInstanceField bc)
-        {
-            throw new NotImplementedException("There's no reason to instance an event var without without data.");
-            
-        }
-
-        public virtual EventVarInstanceField CreateInstanceConfig()
-        {
-            throw new NotImplementedException("There's no reason to instance an event var without without data.");
-        }
 
         public virtual OutT Eval<InT, OutT>()
         {
@@ -132,18 +125,40 @@ namespace BB.BardicFramework.EventVars
 
             Debug.Assert(action != null);
             untypedEvent.AddListener(action);
-            lc++;
+            runtimeListenerCount++;
         }
 
         public virtual void RemoveListener(UnityAction action)
         {
             Initialize();
             untypedEvent.RemoveListener(action);
-            lc--;
-            if (lc <= 0) Debug.LogWarning("removing no listener");
+            runtimeListenerCount--;
+            if (runtimeListenerCount <= 0) Debug.LogWarning("removing no listener");
         }
 
+        public virtual void SetInitialValue(EVInstData bc)
+        {
+            throw new NotImplementedException("There's no reason to instance an event var without without data.");
+        }
 
+        public virtual EVInstData CreateInstanceConfig()
+        {
+            throw new NotImplementedException("There's no reason to instance an event var without without data.");
+        }
+
+#if UNITY_EDITOR
+        
+        public virtual void SetInitValueOfInstanceConfig(SerializedProperty prop, EVInstData config)
+        {
+            throw new NotImplementedException("There's no reason to instance an event var without without data.");
+        }
+        
+        //public virtual void SetInitialValue(SerializedProperty prop)
+        //{
+        //    throw new NotImplementedException("There's no reason to instance an event var without without data.");
+        //}
+
+#endif
 
     }
 }

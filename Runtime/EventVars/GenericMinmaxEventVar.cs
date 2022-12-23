@@ -2,10 +2,11 @@
 //why? https://www.youtube.com/watch?v=raQ3iHhE_Kk
 using UnityEngine;
 
-namespace BB.BardicFramework.EventVars
+namespace BardicBytes.BardicFramework.EventVars
 {
-    public abstract class GenericMinMaxEventVar<T> : GenericEventVar<T>
+    public abstract class GenericMinMaxEventVar<T> : SimpleGenericEventVar<T>
     {
+        
         [Header("MinMax")]
         [SerializeField]
         protected bool hasMin = false;
@@ -33,5 +34,7 @@ namespace BB.BardicFramework.EventVars
         {
             base.Raise(MinMaxClamp(data));
         }
+
+
     }
 }

@@ -1,11 +1,11 @@
 ﻿//alex@bardicbytes.com
-using BB.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BB.BardicFramework.Effects
+namespace BardicBytes.BardicFramework.Effects
 {
     [CreateAssetMenu(menuName = Prefixes.Effects+"Sound Effect")]
-    public class SoundEffect : GenericEventVar<SoundEffect.PlayRequest>
+    public class SoundEffect : SimpleGenericEventVar<SoundEffect.PlayRequest>
     {
         [System.Serializable]
         public struct MusicLevelAdjustment
@@ -16,7 +16,7 @@ namespace BB.BardicFramework.Effects
 
         public const float DEFAULT_VOLUME = .75f;
         [System.Serializable]
-        public struct PlayRequest
+        public class PlayRequest
         {
             public System.Action<ActiveHandle> receiveHandleCallback;
             public SoundEffect sfx;
@@ -47,7 +47,7 @@ namespace BB.BardicFramework.Effects
             }
         }
 
-        public struct ActiveHandle
+        public class ActiveHandle
         {
             public bool constructed;
             public PlayRequest request;
@@ -129,7 +129,7 @@ namespace BB.BardicFramework.Effects
         }
 
 
-        public override PlayRequest To(EventVarInstanceField bc) => (PlayRequest)bc.SystemObjectValue;
+        public override PlayRequest To(EventVars.EVInstData bc) => (PlayRequest)bc.SystemObjectValue;
         public override string ToString()
         {
             return name;
@@ -265,6 +265,10 @@ namespace BB.BardicFramework.Effects
             playedOutro = false;
             indexPlayed = -1;
         }
-        
+
+        protected override void SetInitialvalueOfInstanceConfig(PlayRequest val, EventVars.EVInstData config)
+        {
+            config.SystemObjectValue = val;
+        }
     }
 }

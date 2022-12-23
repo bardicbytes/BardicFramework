@@ -1,6 +1,6 @@
-using BB.BardicFramework.Actions;
+using BardicBytes.BardicFramework.Actions;
 
-namespace BB.BardicSamples.Demo
+namespace BardicBytes.BardicSamples.Demo
 {
     [System.Serializable]
     public class GatherRuntime : ActionRuntime<GatherAction, GatherPerformer, GatherRuntime>

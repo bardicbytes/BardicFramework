@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace BB.BardicFramework.Utilities
+namespace BardicBytes.BardicFramework.Utilities
 {
     public class UnityEventTrigger : MonoBehaviour
     {
