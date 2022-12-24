@@ -1,12 +1,13 @@
 {
   "name": "com.bardicbytes.bardicframework",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "displayName": "Bardic Framework",
   "description": "Modular functionality for any game made with Unity.",
-  "unity": "2021.1",
+  "unity": "2022.1",
  "keywords": [
     "Unity",
     "Framework",
+	"BardicFramework",
     "BardicBytes"
   ],"samples": [
         {

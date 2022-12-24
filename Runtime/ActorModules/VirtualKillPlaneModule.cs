@@ -16,7 +16,7 @@ namespace BardicBytes.BardicFramework.ActorModules
         protected override void OnValidate()
         {
             base.OnValidate();
-            Height.Validate(this);
+            //Height.Validate(this);
         }
 
         protected override void ActorUpdate()
