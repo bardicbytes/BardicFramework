@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5097d7809efa6124c9facf406c7b5a8f, type: 3}
+  m_Name: Spin
+  m_EditorClassIdentifier: 
+  untypedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  <GUID>k__BackingField: 18b0e189a9f1a184886af673128dde78
+  typedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  initialValue: {x: 15, y: 34, z: 48}
+  logValueChange: 0
+  <RequireInstancing>k__BackingField: 0
+  resetValueOnDatalessRaise: 1
+  abortRaiseForIdenticalData: 1
+  requireData: 1
+  autoLock: 0
+  invokeNewListeners: 0
+  raiseOnInit: 0
+  hasMin: 0
+  minValue: {x: 0, y: 0, z: 0}
+  hasMax: 0
+  maxValue: {x: 0, y: 0, z: 0}
