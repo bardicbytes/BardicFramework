@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using BardicBytes.BardicFramework.Platform;
 using BardicBytes.BardicFramework;
+using UnityEditor.Presets;
 
 namespace BardicBytes.BardicFrameworkEditor.Platform
 {
@@ -42,6 +43,7 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
             }
             BardicBuildPostprocessor.lastBuilderPath = path;
             if (string.IsNullOrEmpty(path)) return;
+
             onPreBuild.Invoke();
 
             PlayerSettings.SetScriptingDefineSymbolsForGroup(group, defines);

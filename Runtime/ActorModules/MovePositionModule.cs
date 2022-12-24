@@ -37,7 +37,7 @@ namespace BardicBytes.BardicFramework.ActorModules
                 gameObject.AddComponent<CollisionModule>();
             }
             //todo: remove the need to validate EV fields manually in modules
-            Speed.Validate(this);
+            //Speed.Validate(this);
         }
 
         private void Awake()

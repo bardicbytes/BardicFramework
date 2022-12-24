@@ -81,7 +81,17 @@ namespace BardicBytes.BardicFrameworkEditor.Utilities
                 if (!foldoutOpen) return false;
                 EditorGUI.indentLevel++;
                 GUILayout.BeginVertical("box");
-                var nextProp = serializedObject.GetIterator();
+                SerializedProperty nextProp = default;
+                try
+                {
+                    nextProp = serializedObject.GetIterator();
+                }
+                catch(System.ArgumentNullException ane)
+                {
+                    Debug.LogWarning("Exception Caught. "+ane.Message);
+                    return false;
+                }
+
                 bool goDeeper = true;
                 while (nextProp.NextVisible(goDeeper))
                 {

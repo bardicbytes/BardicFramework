@@ -23,7 +23,7 @@ namespace BardicBytes.BardicFramework.ActorModules
         {
             base.OnValidate();
             if (Target == null) Target = Target = transform;
-            Speed.Validate(this);
+            //Speed.Validate(this);
         }
         protected override void ActorUpdate()
         {

@@ -5,18 +5,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-    public abstract class BaseEventVarField
-    {
-        [HideInInspector]
-        [SerializeField]
-        protected string editorName;
-        [Space]
-        [HideInInspector]
-        public ActorModule module;
-        public abstract void Validate(ActorModule actorModule);
-    }
-
-    public abstract class GenericEventVarField<InT,OutT, EvT> : BaseEventVarField where EvT : BaseGenericEventVar<InT,OutT,EvT>
+    public abstract class GenericEventVarField<InT,OutT, EvT> : EventVarField where EvT : BaseGenericEventVar<InT,OutT,EvT>
     {
         public static implicit operator OutT(GenericEventVarField<InT, OutT, EvT> f) => f.Eval();
         public OutT fallbackValue = default;
@@ -49,14 +38,10 @@ namespace BardicBytes.BardicFramework.EventVars
             return srcEV.Value;
         }
 
-        public override void Validate(ActorModule module)
+        public override void Validate()
         {
-            if (this.module != module) this.module = module;
-            if (srcEV == null)
-            {
-                editorName = "Error. Misconfigured";
-                return;
-            }
+            base.Validate();
+            Debug.Assert(srcEV != null);
         }
     }
 }

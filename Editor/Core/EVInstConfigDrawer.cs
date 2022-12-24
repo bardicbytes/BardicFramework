@@ -3,7 +3,7 @@ using BardicBytes.BardicFramework.EventVars;
 using UnityEditor;
 using UnityEngine;
 
-namespace BardicBytes.BardicFrameworkEditor.EventVars
+namespace BardicBytes.BardicFrameworkEditor
 {
     [CustomPropertyDrawer(typeof(EVInstData), true)]
     public class EVInstConfigDrawer : PropertyDrawer
