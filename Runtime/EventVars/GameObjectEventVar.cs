@@ -7,7 +7,10 @@ namespace BardicBytes.BardicFramework.EventVars
     public class GameObjectEventVar : SimpleGenericEventVar<GameObject>
     {
         public override GameObject To(EventVars.EVInstData bc) => bc.UnityObjectValue as GameObject;
+#if UNITY_EDITOR
+
 
         protected override void SetInitialvalueOfInstanceConfig(GameObject val, EventVars.EVInstData config) => config.UnityObjectValue = val;
+#endif
     }
 }

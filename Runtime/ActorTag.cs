@@ -29,11 +29,6 @@ namespace BardicBytes.BardicFramework
             if (DisplayName == "") DisplayName = name;
         }
 
-        public override List<TagModule> To(EventVars.EVInstData bc)
-        {
-            return bc.SystemObjectValue as List<TagModule>;
-        }
-
         public void Register(TagModule tagMod)
         {
             InitActorList();
@@ -86,6 +81,11 @@ namespace BardicBytes.BardicFramework
             return modules;
         }
 
+        public override List<TagModule> To(EventVars.EVInstData bc) => bc.SystemObjectValue as List<TagModule>;
+
+#if UNITY_EDITOR
         protected override void SetInitialvalueOfInstanceConfig(List<TagModule> val, EventVars.EVInstData config) => config.SystemObjectValue = val;
+
+#endif
     }
 }

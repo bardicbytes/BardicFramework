@@ -10,7 +10,8 @@ namespace BardicBytes.BardicFramework.Cameras
     public class CameraShakeEventVar : SimpleGenericEventVar<CameraShakeConfig>
     {
         public override CameraShakeConfig To(EventVars.EVInstData bc) => (CameraShakeConfig)bc.SystemObjectValue;
-
+#if UNITY_EDITOR
         protected override void SetInitialvalueOfInstanceConfig(CameraShakeConfig val, EventVars.EVInstData config) => config.SystemObjectValue = val;
+#endif
     }
 }

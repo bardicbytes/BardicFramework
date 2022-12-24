@@ -27,6 +27,7 @@ namespace BardicBytes.BardicFramework.EventVars
         protected override void OnValidate()
         {
             base.OnValidate();
+#if UNITY_EDITOR
 
             bool refreshEvCache = false;
 
@@ -108,14 +109,17 @@ namespace BardicBytes.BardicFramework.EventVars
                 }
                 return c;
             }
+#endif
         }
 
+#if UNITY_EDITOR
         [ContextMenu("RefreshEditorNames()")]
         private void RefreshEditorNames()
         {
             for(int i =0; i < eventVarInstances.Length; i++)
                 eventVarInstances[i].RefreshEditorName();
         }
+#endif
 
         public void Awake()
         {

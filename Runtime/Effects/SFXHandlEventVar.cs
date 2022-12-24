@@ -8,10 +8,11 @@ namespace BardicBytes.BardicFramework.Effects
     public class SFXHandleEventVar : SimpleGenericEventVar<SoundEffect.ActiveHandle> 
     {
         public override SoundEffect.ActiveHandle To(EventVars.EVInstData bc) => (SoundEffect.ActiveHandle)bc.SystemObjectValue;
-
+#if UNITY_EDITOR
         protected override void SetInitialvalueOfInstanceConfig(SoundEffect.ActiveHandle val, EventVars.EVInstData config)
         {
             config.SystemObjectValue = val;
         }
+#endif
     }
 }

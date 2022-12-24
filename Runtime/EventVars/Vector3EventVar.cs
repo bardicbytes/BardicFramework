@@ -6,7 +6,6 @@ namespace BardicBytes.BardicFramework.EventVars
     [CreateAssetMenu(menuName = Prefixes.EV + "Vector3")]
     public class Vector3EventVar : GenericMinMaxEventVar<Vector3>, IMinMax<Vector3>
     {
-        public override Vector3 To(EventVars.EVInstData bc) => bc.Vector3Value;
 
         public override Vector3 MinMaxClamp(Vector3 val)
         {
@@ -19,6 +18,9 @@ namespace BardicBytes.BardicFramework.EventVars
             else return val;
         }
 
+        public override Vector3 To(EventVars.EVInstData bc) => bc.Vector3Value;
+#if UNITY_EDITOR
         protected override void SetInitialvalueOfInstanceConfig(Vector3 val, EventVars.EVInstData config) => config.Vector3Value = val;
+#endif
     }
 }

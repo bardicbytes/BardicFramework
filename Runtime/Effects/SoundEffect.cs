@@ -129,7 +129,6 @@ namespace BardicBytes.BardicFramework.Effects
         }
 
 
-        public override PlayRequest To(EventVars.EVInstData bc) => (PlayRequest)bc.SystemObjectValue;
         public override string ToString()
         {
             return name;
@@ -265,10 +264,12 @@ namespace BardicBytes.BardicFramework.Effects
             playedOutro = false;
             indexPlayed = -1;
         }
-
+        public override PlayRequest To(EVInstData bc) => (PlayRequest)bc.SystemObjectValue;
+#if UNITY_EDITOR
         protected override void SetInitialvalueOfInstanceConfig(PlayRequest val, EventVars.EVInstData config)
         {
             config.SystemObjectValue = val;
         }
+#endif
     }
 }

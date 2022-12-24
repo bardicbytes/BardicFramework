@@ -7,7 +7,6 @@ namespace BardicBytes.BardicFramework.EventVars
     [CreateAssetMenu(menuName = Prefixes.EV + "Int")]
     public class IntEventVar : GenericMinMaxEventVar<int>, IMinMax<int>
     {
-        public override int To(EventVars.EVInstData bc) => bc.IntValue;
         public override int MinMaxClamp(int val)
         {
             if (hasMax && hasMin)
@@ -18,7 +17,11 @@ namespace BardicBytes.BardicFramework.EventVars
                 return Mathf.Max(val, minValue);
             else return val;
         }
+
+        public override int To(EventVars.EVInstData bc) => bc.IntValue;
+#if UNITY_EDITOR
         protected override void SetInitialvalueOfInstanceConfig(int val, EventVars.EVInstData config) => config.IntValue = val;
+#endif
 
         public void Increment() => Raise(Value + 1);
 

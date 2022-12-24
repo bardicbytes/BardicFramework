@@ -8,13 +8,9 @@ namespace BardicBytes.BardicFramework.EventVars
     public class BoolEventVar : SimpleGenericEventVar<bool>
     {
         public void Toggle() => Raise(!Value);
+
         public override bool To(EventVars.EVInstData bc) => bc.BoolValue;
-
-        #if UNITY_EDITOR
-        public void PropField()
-        {
-
-        }
+#if UNITY_EDITOR
 
         protected override void SetInitialvalueOfInstanceConfig(bool val, EventVars.EVInstData config) => config.BoolValue = val;
 #endif

@@ -199,21 +199,23 @@ namespace BardicBytes.BardicFramework.EventVars
             runtimeListenerCount--;
         }
 
-        public override void SetInitialValue(EventVars.EVInstData bc)
-        {
-            InT v = default;
-            v = To(bc);
-            SetInitialValue(v);
-        }
-
         public void SetInitialValue(InT initialValue)
         {
             this.initialValue = initialValue;
             if (isInitialized) ChangeCurrentValue(initialValue);
             else UntypedStoredValue = initialValue;
         }
+        public abstract InT To(EventVars.EVInstData bc);
 
+        public override void SetInitialValue(EventVars.EVInstData bc)
+        {
+            InT v = default;
+            v = To(bc);
+            SetInitialValue(v);
+        }
 #if UNITY_EDITOR
+
+        public InT To(SerializedProperty prop) => To((prop.boxedValue as EVInstData));
 
         public override void SetInitValueOfInstanceConfig(SerializedProperty prop, EVInstData config)
         {
@@ -226,8 +228,6 @@ namespace BardicBytes.BardicFramework.EventVars
 
         protected abstract void SetInitialvalueOfInstanceConfig(InT val, EVInstData config);
 
-        public InT To(SerializedProperty prop) => To((prop.boxedValue as EVInstData));
-        public abstract InT To(EventVars.EVInstData bc);
 
         //public override void SetInitialValue(SerializedProperty prop)
         //{

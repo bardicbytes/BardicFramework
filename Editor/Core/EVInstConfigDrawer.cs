@@ -30,7 +30,7 @@ namespace BardicBytes.BardicFrameworkEditor.EventVars
             }
             catch(System.NullReferenceException e)
             {
-                EditorGUILayout.LabelField(label.text+" NullRef Caught");
+                EditorGUILayout.LabelField(label.text+" NullRef Caught \n"+e.Message);
             }
             EditorGUI.indentLevel = indent;
             EditorGUI.EndProperty();

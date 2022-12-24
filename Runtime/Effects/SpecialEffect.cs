@@ -138,7 +138,6 @@ namespace BardicBytes.BardicFramework.Effects
             }
         }
 
-        public override PlayRequest To(EventVars.EVInstData bc) => (PlayRequest)bc.SystemObjectValue;
 
         public Beat GetBeat(int index)
         {
@@ -187,6 +186,10 @@ namespace BardicBytes.BardicFramework.Effects
                 untypedEvent.Invoke();
         }
 
+        public override PlayRequest To(EVInstData bc) => (PlayRequest)bc.SystemObjectValue;
+#if UNITY_EDITOR
+
         protected override void SetInitialvalueOfInstanceConfig(PlayRequest val, EventVars.EVInstData config) => config.SystemObjectValue = val;
+#endif
     }
 }

@@ -11,6 +11,8 @@ namespace BardicBytes.BardicFrameworkEditor.Utilities
         private SerializedObject serializedObject;
         private bool foldoutOpen;
 
+        public event System.Action OnInspectorGUIBeforeOtherFields;
+
         public PropertyFieldHelper(SerializedObject serializedObject)
         {
             this.serializedObject = serializedObject;
@@ -36,8 +38,19 @@ namespace BardicBytes.BardicFrameworkEditor.Utilities
             {
                 changed |= DrawProp(pPath[i]);
             }
+
+            OnInspectorGUIBeforeOtherFields?.Invoke();
+
             foldoutOpen = DrawFoldout(drawUnspecifiedparams, pPath.Length); ;
-            serializedObject.ApplyModifiedProperties();
+
+            try
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
+            catch(System.ArgumentNullException ane)
+            {
+                Debug.LogWarning("ArgumentNullException Caught. Don't mind me. Known issue if it happened while building. Otherwise...?? \n" + ane.Message);
+            }
 
             bool DrawProp(string propPath)
             {

@@ -9,8 +9,8 @@ using BardicBytes.BardicFramework;
 
 namespace BardicBytes.BardicFrameworkEditor.Platform
 {
-    [CreateAssetMenu(menuName = Prefixes.Platform+"Builder")]
-    public class BardicBuilder : ScriptableObject
+    [CreateAssetMenu(menuName = Prefixes.Platform + "Builder")]
+    public class BardicBuilder : ScriptableObject, IBardicEditorable
     {
         public UnityEvent onPreBuild;
 
@@ -21,11 +21,14 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
         public BuildTarget target = BuildTarget.StandaloneWindows;
         public BuildTargetGroup group = BuildTargetGroup.Standalone;
         public string[] defines;
-        public string modifier = "";
+        //public string modifier = "";
         public string exeName = "fileName";
         public string path = "";
 
         string PathSuffix => target == BuildTarget.WebGL ? "" : string.Format(@"\{0}.exe", exeName);
+
+        public string[] EditorFieldNames => new string[]{"scenes"};
+        public bool DrawOtherFields => true;
 
         //private const string BACKUP = "BackUpThisFolder_ButDontShipItWithYourGame";
 
@@ -67,8 +70,7 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
                     scenePaths[i] = AssetDatabase.GetAssetPath(scenes[i]);
 
                 var report = BuildPipeline.BuildPlayer(scenePaths, path + PathSuffix, target, GetBuildOptions());
-
-                OpenFolder();
+                if(report.summary.result == UnityEditor.Build.Reporting.BuildResult.Succeeded) OpenFolder();
                 var bi = BuildInfo.LoadDefault();
                 UnityEngine.Debug.Log("Built " + name + " " + bi + " " + " to " + path);
             }
@@ -96,8 +98,14 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
         [ContextMenu("Open Folder")]
         private void OpenFolder()
         {
-            if(Directory.Exists(path))
-                Process.Start(new ProcessStartInfo("explorer.exe", path));
+            if (Directory.Exists(path))
+            {
+                string p = path.Replace(@"/", @"\");
+                var args = string.Format("{1}{0}{1}", p, "\"");
+                //UnityEngine.Debug.Log("Opening Explorer: " + args);
+                var si = new ProcessStartInfo("explorer.exe", args);
+                Process.Start(si);
+            }
         }
     }
 }

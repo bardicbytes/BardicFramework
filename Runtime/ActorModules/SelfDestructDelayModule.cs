@@ -1,7 +1,7 @@
 using BardicBytes.BardicFramework;
 using UnityEngine;
 
-namespace BardicBytes.BardicSamples.ActorModules
+namespace BardicBytes.BardicFramework.ActorModules
 {
     public class SelfDestructDelayModule : ActorModule
     {

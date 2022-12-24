@@ -3,7 +3,7 @@ using BardicBytes.BardicFramework;
 using BardicBytes.BardicFramework.EventVars;
 using UnityEngine;
 
-namespace BardicBytes.BardicSamples.ActorModules
+namespace BardicBytes.BardicFramework.ActorModules
 {
     [RequireComponent(typeof(EventVarInstancer))]
     /// <summary>

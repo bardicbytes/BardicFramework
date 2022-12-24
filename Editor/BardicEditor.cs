@@ -12,6 +12,7 @@ namespace BardicBytes.BardicFrameworkEditor
         protected virtual void OnEnable()
         {
             propHelper = new PropertyFieldHelper(serializedObject);
+            propHelper.OnInspectorGUIBeforeOtherFields += OnInspectorGUIBeforeOtherFields;
         }
 
         public override void OnInspectorGUI()
@@ -20,5 +21,7 @@ namespace BardicBytes.BardicFrameworkEditor
             UnityEngine.Debug.Assert(propHelper != null);
             propHelper.DrawPropFields(Target.DrawOtherFields, Target.EditorFieldNames);
         }
+
+        protected virtual void OnInspectorGUIBeforeOtherFields() { }
     }
 }

@@ -16,8 +16,10 @@ namespace BardicBytes.BardicFramework.EventVars
                 return Mathf.Max(val, minValue);
             else return val;
         }
-        public override float To(EventVars.EVInstData bc) => bc.FloatValue;
 
+        public override float To(EventVars.EVInstData bc) => bc.FloatValue;
+#if UNITY_EDITOR
         protected override void SetInitialvalueOfInstanceConfig(float val, EventVars.EVInstData config) => config.FloatValue = val;
+#endif
     }
 }

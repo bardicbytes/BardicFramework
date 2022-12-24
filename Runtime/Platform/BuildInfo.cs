@@ -7,7 +7,22 @@ namespace BardicBytes.BardicFramework.Platform
     [System.Serializable]
     public struct BuildInfo
     {
-        public static BuildInfo LoadDefault() => JsonUtility.FromJson<BuildInfo>(File.ReadAllText(Path.Combine(Application.dataPath, "Data", "buildinfo.json")));
+        public static BuildInfo LoadDefault()
+        {
+            var path = Path.Combine(Application.dataPath, "Data");
+            Directory.CreateDirectory(path);
+            path = Path.Combine(path, "buildinfo.json");
+            if (!File.Exists(path))
+            {
+                File.CreateText(path).Dispose();
+                var bi = new BuildInfo();
+                bi.Update();
+                bi.name = Application.productName;
+                File.WriteAllText(path, bi.ToJson());
+            }
+            var json = File.ReadAllText(path);
+            return JsonUtility.FromJson<BuildInfo>(json);
+        }
 
         public string name;
         public string appVersion;
