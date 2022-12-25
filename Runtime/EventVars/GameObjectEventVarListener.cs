@@ -2,7 +2,7 @@
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-    public class GameObjectEventVarListener : GenericBaseEventVarListener<GameObjectEventVar>
+    public class GameObjectEventVarListener : GenericEventVarListener<GameObjectEventVar>
     {
         protected override void HandleTypedEventRaised(GameObjectEventVar data) => base.HandleTypedEventRaised(data);
     }

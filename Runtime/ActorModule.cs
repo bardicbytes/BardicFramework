@@ -38,7 +38,6 @@ namespace BardicBytes.BardicFramework
         {
             Actor.Updated -= ActorUpdate;
             Actor.FixedUpdated -= ActorFixedUpdate;
-
         }
 
         /// <summary>
@@ -50,9 +49,7 @@ namespace BardicBytes.BardicFramework
         /// </summary>
         protected virtual void ActorFixedUpdate() { }
 
-        public virtual void CollectActorDebugInfo(System.Text.StringBuilder sb)
-        { 
-        }
+        public virtual void CollectActorDebugInfo(System.Text.StringBuilder sb) {}
         
         public T GetModule<T>() where T : Component => Actor.GetModule<T>();
         public System.Collections.Generic.List<T> GetModules<T>() where T : Component => Actor.GetModules<T>();

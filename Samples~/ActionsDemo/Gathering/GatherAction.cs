@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BardicBytes.BardicSamples.Demo
 {
     [CreateAssetMenu(menuName = Prefixes.BardicBase+"Demo/Gather Action")]
-    public class GatherAction : Action<GatherAction, GatherPerformer, GatherRuntime>
+    public class GatherAction : GenericAction<GatherAction, GatherPerformer, GatherRuntime>
     {
         public class GatherPhaseData : GatherAction.PhaseData
         {
@@ -18,7 +18,7 @@ namespace BardicBytes.BardicSamples.Demo
             return new GatherPhaseData();
         }
 
-        public override GatherRuntime GetRuntime(GatherPerformer actionModule)
+        public override GatherRuntime CreateRuntime(GatherPerformer actionModule)
         {
             throw new System.NotImplementedException();
         }

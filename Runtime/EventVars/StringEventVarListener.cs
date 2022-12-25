@@ -2,7 +2,7 @@
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-    public class StringEventVarListener : GenericBaseEventVarListener<string>
+    public class StringEventVarListener : GenericEventVarListener<string>
     {
         protected override void HandleTypedEventRaised(string data)
         {

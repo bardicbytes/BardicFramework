@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-    public abstract class GenericEventVarField<InT,OutT, EvT> : EventVarField where EvT : BaseGenericEventVar<InT,OutT,EvT>
+    public abstract class GenericEventVarField<InT,OutT, EvT> : EventVarField where EvT : GenericEventVar<InT,OutT,EvT>
     {
         public static implicit operator OutT(GenericEventVarField<InT, OutT, EvT> f) => f.Eval();
         public OutT fallbackValue = default;

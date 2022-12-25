@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicSamples.Demo
 {
-    public class GatherPerformer : ActionPerformer<GatherAction, GatherPerformer, GatherRuntime>
+    public class GatherPerformer : GenericActionPerformer<GatherAction, GatherPerformer, GatherRuntime>
     {
         
     }

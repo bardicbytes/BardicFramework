@@ -25,5 +25,9 @@
     "name": "Bardic Bytes LLC",
     "email": "support@bardicbytes.com",
     "url": "https://www.bardicbytes.com"
+  },
+  {
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.6"
   }
 }
