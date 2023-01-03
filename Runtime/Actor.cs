@@ -1,6 +1,7 @@
 //alex@bardicbytes.com
 //https://github.com/bardicbytes/BardicFramework
 using BardicBytes.BardicFramework.EventVars;
+using BardicBytes.BardicFramework.Utilities;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace BardicBytes.BardicFramework
     /// The Actor is the head component of the Bardic Framework, connecting all the modules together.
     /// Like a GameObject needs Components, the Actor needs ActorModules.
     /// </summary>
-    public class Actor : MonoBehaviour
+    public class Actor : MonoBehaviour, IBardicEditorable
     {
         [System.Serializable]
         public class GizmosMode
@@ -30,6 +31,7 @@ namespace BardicBytes.BardicFramework
         private static Director director;
 
         [field: SerializeField]
+        [Tooltip("When true, the actor game object is deactivated on SelfDestruct, but will be destroyed when false.")]
         public BoolEventVar.Field DeactivateOnSelfDestruct{ get; protected set; }
         [field:Space]
         [field: SerializeField]
@@ -46,17 +48,14 @@ namespace BardicBytes.BardicFramework
         private GizmosMode DebugGizmo { get; set; } = default;
         
         [SerializeField]
-        [HideInInspector]
         private int[] compCache;
 #endif
 
         [field: SerializeField]
-        [field: HideInInspector]
         public Component[] AllComponents { get; protected set; } = default;
 
 
         [SerializeField]
-        [HideInInspector]
         public bool[] compIsModule = default;
 
         public EventVarInstancer Instancer => GetModule<EventVarInstancer>();
@@ -79,10 +78,14 @@ namespace BardicBytes.BardicFramework
         /// </summary>
         public DestructionDelayDelegate DestructionDelay;
         public bool IsDestructing { get; protected set; }
+
+
         public event System.Action Updated;
         public event System.Action FixedUpdated;
 
 #if UNITY_EDITOR
+        public string[] EditorFieldNames => new string[] { StringFormatting.GetBackingFieldName( "DeactivateOnSelfDestruct") };
+        public bool DrawOtherFields => true;
 
         private void OnDrawGizmos()
         {
@@ -146,8 +149,15 @@ namespace BardicBytes.BardicFramework
                 AllComponents = foundComps;
                 compCache = new int[AllComponents.Length];
                 compIsModule = new bool[AllComponents.Length];
+
+                Debug.Assert(AllComponents.Length == foundComps.Length);
+
                 for (int i = 0; i < AllComponents.Length; i++)
                 {
+                    if(AllComponents[i] == null)
+                    {
+                        Debug.LogWarning("null ?");
+                    }
                     compCache[i] = AllComponents[i].GetType().GetHashCode();
                     compIsModule[i] = AllComponents[i] is ActorModule;
                 }
@@ -216,28 +226,28 @@ namespace BardicBytes.BardicFramework
             }
         }
 
-        /// <typeparam name="T">Any Component</typeparam>
+        /// <typeparam name="ComponentT">Any Component</typeparam>
         /// <returns>The first instance of the component or null</returns>
-        public T GetModule<T>() where T : Component
+        public ComponentT GetModule<ComponentT>() where ComponentT : Component
         {
-            System.Type key = typeof(T);
-            if (!HasModule<T>()) return null;
-            return AllComponents[ModulesLookup[key][0]] as T;
+            System.Type key = typeof(ComponentT);
+            if (!HasModule<ComponentT>()) return null;
+            return AllComponents[ModulesLookup[key][0]] as ComponentT;
         }
 
         public bool HasModule<T>() where T : Component => ModulesLookup.ContainsKey(typeof(T));
 
 
-        /// <typeparam name="T">Any Component</typeparam>
+        /// <typeparam name="ComponentT">Any Component</typeparam>
         /// <returns>A list of all instances of Type T</returns>
-        public List<T> GetModules<T>() where T : Component
+        public List<ComponentT> GetModules<ComponentT>() where ComponentT : Component
         {
-            System.Type key = typeof(T);
-            if (!HasModule<T>()) return null;
-            var modList = new List<T>();
+            System.Type key = typeof(ComponentT);
+            if (!HasModule<ComponentT>()) return null;
+            var modList = new List<ComponentT>();
             for(int i =0; i < ModulesLookup[key].Count ;i++)
             {
-                modList.Add(AllComponents[ModulesLookup[key][i]] as T);
+                modList.Add(AllComponents[ModulesLookup[key][i]] as ComponentT);
             }
             return modList;
         }

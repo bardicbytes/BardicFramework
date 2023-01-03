@@ -1,6 +1,3 @@
-using BardicBytes.BardicFramework;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BardicBytes.BardicFramework.ActorModules
@@ -14,22 +11,34 @@ namespace BardicBytes.BardicFramework.ActorModules
         [field: SerializeField]
         public bool UseRigidbody { get; protected set; } = true;
 
+        [SerializeField]
+        private bool matchPosition = true;
+        [SerializeField]
+        private bool matchRotation = true;
+        [SerializeField]
+        private bool matchScale = false;
+
         protected override void ActorUpdate()
         {
             if (MatchTarget.Count == 0) return;
 
             if(UseRigidbody && Actor.HasRigidbody)
             {
-                Actor.Rigidbody.MovePosition(MatchTarget.Actor0.transform.position);
-                Actor.Rigidbody.MoveRotation(MatchTarget.Actor0.transform.rotation);
-
-                transform.localScale = MatchTarget.Actor0.transform.localScale;
+                if(matchPosition)
+                    Actor.Rigidbody.MovePosition(MatchTarget.Actor0.transform.position);
+                if(matchRotation)
+                    Actor.Rigidbody.MoveRotation(MatchTarget.Actor0.transform.rotation);
+                if (matchScale)
+                    transform.localScale = MatchTarget.Actor0.transform.localScale;
             }
             else
             {
-                transform.position = MatchTarget.Actor0.transform.position;
-                transform.rotation = MatchTarget.Actor0.transform.rotation;
-                transform.localScale = MatchTarget.Actor0.transform.localScale;
+                if(matchPosition)
+                    transform.position = MatchTarget.Actor0.transform.position;
+                if(matchRotation)
+                    transform.rotation = MatchTarget.Actor0.transform.rotation;
+                if(matchScale)
+                    transform.localScale = MatchTarget.Actor0.transform.localScale;
             }
         }
     }

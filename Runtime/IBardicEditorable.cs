@@ -2,6 +2,7 @@ namespace BardicBytes.BardicFramework
 {
     public interface IBardicEditorable
     {
+#if UNITY_EDITOR
         /// <summary>
         /// new string[0]
         /// </summary>
@@ -10,5 +11,6 @@ namespace BardicBytes.BardicFramework
         /// true
         /// </summary>
         bool DrawOtherFields { get; }
+#endif
     }
 }

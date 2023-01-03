@@ -95,7 +95,7 @@ namespace BardicBytes.BardicFramework.EventVars
         }
         public virtual OutT Eval<InT, OutT>(InT inValue)
         {
-            return ((BaseGenericEventVar<InT, OutT, EvaluatingEventVar<InT, OutT>>)this).Eval(inValue);
+            return ((GenericEventVar<InT, OutT, EvaluatingEventVar<InT, OutT>>)this).Eval(inValue);
         }
 
         public override string ToString()

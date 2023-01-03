@@ -64,7 +64,15 @@ namespace BardicBytes.BardicFrameworkEditor.Utilities
                 var sp = serializedObject.FindProperty(propPath);
                 if (sp != null && !targetProps.ContainsKey(propPath)) targetProps.Add(propPath, sp);
                 if (targetProps.ContainsKey(propPath)) return targetProps[propPath];
-                throw new System.Exception(propPath + " not found in "+serializedObject.ToString());
+
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                var it = serializedObject.GetIterator();
+                while (it.Next(true))
+                {
+                    sb.AppendLine(it.name);
+                }
+
+                throw new System.Exception(propPath + " not found in "+serializedObject.ToString()+"\n"+sb.ToString());
             }
 
             bool DrawFoldout(bool drawUnspecified, int specifiedCount)

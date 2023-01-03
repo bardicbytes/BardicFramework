@@ -44,13 +44,14 @@ namespace BardicBytes.BardicFramework.Effects
 
         private void Awake()
         {
+            bank.Initialize();
             lastPlay = new Dictionary<SoundEffect, int>();
             spawnedSources = new List<AudioSource>();
             spawnedSfxHandles = new List<SoundEffect.ActiveHandle>();
             activeFX = new List<SpecialEffect.ActiveHandle>();
             musicHandles = new SoundEffect.ActiveHandle[musicChannels];
 
-            stopMusicChannelEv.AddListener(HandleStopMusicChannel);
+            stopMusicChannelEv?.AddListener(HandleStopMusicChannel);
 
             bank.onSfxAdded += HandleOnSFXAdded;
             bank.onSfxRemoved += HandleOnSFXRemoved;
@@ -63,7 +64,7 @@ namespace BardicBytes.BardicFramework.Effects
                 bank.GetSound(i).AddListener(HandlePlayRequest);
             }
 
-            skipBeat.AddListener(HandleBeatSkipRequest);
+            skipBeat?.AddListener(HandleBeatSkipRequest);
 
             for (int i = 0; i < bank.EffectCount; i++)
             {
@@ -117,12 +118,17 @@ namespace BardicBytes.BardicFramework.Effects
         private void UpdateMusic()
         {
             UnityEngine.Profiling.Profiler.BeginSample("UpdateMusic");
-
+            bool hasMusic = false;
             for (int i = 0; i < musicHandles.Length; i++)
             {
-                if (musicHandles[i].spawnedSource != null) musicHandles[i].spawnedSource.mute = hackmutemusic;
+                if (musicHandles[i] == null) continue;
+                hasMusic |= true;
+                if (musicHandles[i].spawnedSource != null)
+                {
+                    musicHandles[i].spawnedSource.mute = hackmutemusic;
+                }
             }
-
+            if (!hasMusic) return;
 #if UNITY_EDITOR
             if (Time.frameCount % 100 == 0)
                 debugMusicOff = UnityEditor.EditorPrefs.GetBool(DebugMusicOff_Key);
@@ -244,7 +250,7 @@ namespace BardicBytes.BardicFramework.Effects
             if (hasParticles && hasNoPlayingParticles)
                 ps.gameObject.SetActive(false);
 
-            bool hasNoPlayingSound = handle.soundEffectHandles[beatIndex].spawnedSource == null || !handle.soundEffectHandles[beatIndex].spawnedSource.isActiveAndEnabled;
+            bool hasNoPlayingSound = handle.soundEffectHandles[beatIndex] == null || handle.soundEffectHandles[beatIndex].spawnedSource == null || !handle.soundEffectHandles[beatIndex].spawnedSource.isActiveAndEnabled;
             if (hasNoPlayingParticles && hasNoPlayingSound)
             {
                 //Debug.Log("beat complete! " + handle.request.fx.name + ", beat " + beatIndex);

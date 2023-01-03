@@ -40,7 +40,7 @@ namespace BardicBytes.BardicFrameworkEditor
             {
                 var module = EVFieldProperty.serializedObject.targetObject as ActorModule;
                 moduleProp.objectReferenceValue = module;
-                EditorUtility.SetDirty(module);
+                if(module != null) EditorUtility.SetDirty(module);
             }
             EditorGUI.EndProperty();
         }

@@ -7,7 +7,11 @@ namespace BardicBytes.BardicFramework.Cameras
     public class CamOffset
     {
         [SerializeField]
-        public bool local = false;
+        public bool maintainRelativePosition = false;
+        [SerializeField]
+        public bool useLocalPosition = false;
+        [SerializeField]
+        public bool useLocalRotation = false;
         [SerializeField]
         public Vector3 position = new Vector3(10, 5, 10);
         [SerializeField]
@@ -30,4 +34,5 @@ namespace BardicBytes.BardicFramework.Cameras
             return s;
         }
     }
+
 }

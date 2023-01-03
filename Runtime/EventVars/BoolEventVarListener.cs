@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-    public class BoolEventVarListener : GenericBaseEventVarListener<bool>
+    public class BoolEventVarListener : GenericEventVarListener<bool>
     {
         [SerializeField]
         private bool invertValueForResponse = false;

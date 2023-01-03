@@ -1,5 +1,6 @@
 //alex@bardicbytes.com
 using BardicBytes.BardicFramework.EventVars;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BardicBytes.BardicFramework
@@ -8,6 +9,32 @@ namespace BardicBytes.BardicFramework
     {
         [field: SerializeField]
         public ActorTag[] Tags { get; protected set; } = default;
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+            bool refresh = false;
+            for(int i =0; !refresh && i < Tags.Length; i++)
+            {
+                if(Tags[i] == null)
+                {
+                    refresh = true;
+                }
+            }
+            if(refresh)
+            {
+                List<ActorTag> tagList = new List<ActorTag>(Tags);
+                for (int i = 0; i < tagList.Count; i++)
+                {
+                    if (tagList[i] == null)
+                    {
+                        tagList.RemoveAt(i);
+                        i--;
+                    }
+                }
+                Tags = tagList.ToArray();
+            }
+        }
 
         protected override void OnEnable()
         {

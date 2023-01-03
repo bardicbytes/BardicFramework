@@ -9,10 +9,9 @@ using UnityEditor;
 #endif
 namespace BardicBytes.BardicFramework.EventVars
 {
-
-    public abstract class BaseGenericEventVar<InT, OutT, EvT> : EventVar where EvT : BaseGenericEventVar<InT, OutT, EvT>
+    public abstract class GenericEventVar<InT, OutT, EvT> : EventVar where EvT : GenericEventVar<InT, OutT, EvT>
     {
-        public static implicit operator OutT(BaseGenericEventVar<InT, OutT, EvT> ev) => ev.Value;
+        public static implicit operator OutT(GenericEventVar<InT, OutT, EvT> ev) => ev.Value;
 
         /// <summary>
         /// The Actor's instance Value, the source asset's Value, or this field's fallback value; in that order.

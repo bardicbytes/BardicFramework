@@ -43,6 +43,18 @@ namespace BardicBytes.BardicFramework.Effects
         }
 
         [System.Serializable]
+        public class Beat
+        {
+            public bool stopAudioOnSkip = true;
+            public bool waitForPrev;
+            [FormerlySerializedAs("t")]
+            public float delay;
+            public SoundEffect sfx;
+            public ParticleSystem particlePrefab;
+            public bool matchTargetRot = true;
+        }
+
+        [System.Serializable]
         public class ActiveHandle
         {
             public PlayRequest request;
@@ -89,18 +101,6 @@ namespace BardicBytes.BardicFramework.Effects
             {
                 return  "SpecialEffect.ActiveHandle: " + request.fx.name + " Handle. "+(wasConstructed ? "Constructed " : "NOT Constructed!?") + startTime;
             }
-        }
-
-        [System.Serializable]
-        public class Beat
-        {
-            public bool stopAudioOnSkip = true;
-            public bool waitForPrev;
-            [FormerlySerializedAs("t")]
-            public float delay;
-            public SoundEffect sfx;
-            public ParticleSystem particlePrefab;
-            public bool matchTargetRot = true;
         }
 
         [SerializeField]
