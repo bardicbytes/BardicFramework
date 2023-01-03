@@ -52,6 +52,8 @@ namespace BardicBytes.BardicFramework.Cameras
         {
             base.OnValidate();
 
+            if (Application.isPlaying) return;
+
             if (altOffsets == null || altOffsets.Length == 0)
                 altOffsets = new CamOffset[3];
             if (altOffsets == null) return;
@@ -86,12 +88,23 @@ namespace BardicBytes.BardicFramework.Cameras
             Vector3 lookAtWorldOffset = tt.TransformVector(currentOffset.lookAt);
             Vector3 lookAtTarget = tt.position + lookAtWorldOffset;
             Vector3 worldOffset = tt.TransformVector(currentOffset.position);
-            Vector3 goalCamPos = tt.position + worldOffset;
 
             float t = easePos && Application.isPlaying ? camMoveRate * Time.deltaTime : 1;
-            Vector3 p = Vector3.Lerp(initCamPos, goalCamPos, t);
 
-            targetCam.transform.position = currentOffset.local ? p : currentOffset.position;
+            if (currentOffset.useLocalPosition)
+            {
+                Vector3 goalCamPos = tt.position + worldOffset;
+                Vector3 p = Vector3.Lerp(initCamPos, goalCamPos, t);
+                targetCam.transform.position = p;
+            }
+            else if(currentOffset.maintainRelativePosition)
+            {
+                targetCam.transform.position = tt.position + currentOffset.position;
+            }
+            else
+            {
+                targetCam.transform.position = currentOffset.position;
+            }
 
             Debug.DrawLine(lookAtTarget, transform.position, Color.gray);
             if (Application.isPlaying)
@@ -102,9 +115,17 @@ namespace BardicBytes.BardicFramework.Cameras
             Quaternion lookRot = Quaternion.LookRotation(lookAtTarget - transform.position, Vector3.up);
             t = easeRot && Application.isPlaying ? camRotRate * Time.deltaTime : 1;
             Quaternion r = Quaternion.Lerp(targetCam.transform.rotation, lookRot, t);
-            targetCam.transform.rotation = currentOffset.local ? r : Quaternion.LookRotation(currentOffset.lookAt - transform.position, Vector3.up);
+            if (currentOffset.useLocalRotation)
+            {
+                targetCam.transform.rotation = r;
+            }
+            else
+            {
+                targetCam.transform.rotation = Quaternion.LookRotation(currentOffset.lookAt - transform.position, Vector3.up);
+            }
             SetOrthoSize(OrthoSize);
         }
+
 
         protected override void SetOrthoSize(float s)
         {

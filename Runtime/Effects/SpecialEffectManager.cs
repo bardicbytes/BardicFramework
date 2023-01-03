@@ -44,6 +44,7 @@ namespace BardicBytes.BardicFramework.Effects
 
         private void Awake()
         {
+            bank.Initialize();
             lastPlay = new Dictionary<SoundEffect, int>();
             spawnedSources = new List<AudioSource>();
             spawnedSfxHandles = new List<SoundEffect.ActiveHandle>();
@@ -249,7 +250,7 @@ namespace BardicBytes.BardicFramework.Effects
             if (hasParticles && hasNoPlayingParticles)
                 ps.gameObject.SetActive(false);
 
-            bool hasNoPlayingSound = handle.soundEffectHandles[beatIndex].spawnedSource == null || !handle.soundEffectHandles[beatIndex].spawnedSource.isActiveAndEnabled;
+            bool hasNoPlayingSound = handle.soundEffectHandles[beatIndex] == null || handle.soundEffectHandles[beatIndex].spawnedSource == null || !handle.soundEffectHandles[beatIndex].spawnedSource.isActiveAndEnabled;
             if (hasNoPlayingParticles && hasNoPlayingSound)
             {
                 //Debug.Log("beat complete! " + handle.request.fx.name + ", beat " + beatIndex);
