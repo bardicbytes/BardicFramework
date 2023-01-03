@@ -1,33 +1,32 @@
 {
-  "name": "com.bardicbytes.bardicframework",
-  "version": "0.2.0",
-  "displayName": "Bardic Framework",
-  "description": "Modular functionality for any game made with Unity.",
-  "unity": "2022.1",
- "keywords": [
-    "Unity",
-    "Framework",
-	"BardicFramework",
-    "BardicBytes"
-  ],"samples": [
-        {
-            "displayName": "Demo",
-            "description": "A simple demonstration of the framework in use.",
-            "path": "Samples~/Demo"
-        },
+	"name": "com.bardicbytes.bardicframework",
+	"version": "0.2.0",
+	"displayName": "Bardic Framework",
+	"description": "Modular functionality for any game made with Unity.",
+	"unity": "2022.1",
+	"keywords": [
+		"Unity",
+		"Framework",
+		"BardicFramework",
+		"BardicBytes"
+	],
+	"samples": [{
+			"displayName": "Demo",
+			"description": "A simple demonstration of the framework in use.",
+			"path": "Samples~/Demo"
+		},
 		{
-            "displayName": "Actor Modules",
-            "description": "A collection of simple Actor Module derrivations",
-            "path": "Samples~/ActorModules"
-        }
-    ],
-  "author": {
-    "name": "Bardic Bytes LLC",
-    "email": "support@bardicbytes.com",
-    "url": "https://www.bardicbytes.com"
-  },
-  {
-  "dependencies": {
-    "com.unity.textmeshpro": "3.0.6"
-  }
+			"displayName": "Actor Modules",
+			"description": "A collection of simple Actor Module derrivations",
+			"path": "Samples~/ActorModules"
+		}
+	],
+	"author": {
+		"name": "Bardic Bytes LLC",
+		"email": "support@bardicbytes.com",
+		"url": "https://www.bardicbytes.com"
+	},
+	"dependencies": {
+		"com.unity.textmeshpro": "3.0.6"
+	}
 }
