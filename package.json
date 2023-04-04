@@ -16,9 +16,9 @@
 			"path": "Samples~/Demo"
 		},
 		{
-			"displayName": "Actor Modules",
-			"description": "A collection of simple Actor Module derrivations",
-			"path": "Samples~/ActorModules"
+			"displayName": "Actions Demo",
+			"description": "an exmaple of the action classes",
+			"path": "Samples~/ActionsDemo"
 		}
 	],
 	"author": {
