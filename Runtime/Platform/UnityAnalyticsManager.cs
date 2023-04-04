@@ -1,7 +1,7 @@
 //alex@bardicbytes.com
 using System.Collections.Generic;
 using UnityEngine;
-#if ENABLE_CLOUD_SERVICES_ANALYTICS
+#if BB_ENABLE_ANALYTICS
 using UnityEngine.Analytics;
 #endif
 
@@ -13,7 +13,7 @@ namespace BardicBytes.BardicFramework.Platform
         public override void SendEvent(string eventname)
         {
 
-#if ENABLE_CLOUD_SERVICES_ANALYTICS && !UNITY_EDITOR
+#if BB_ENABLE_ANALYTICS && !UNITY_EDITOR
             var r = Analytics.CustomEvent(eventname);
             if(r != AnalyticsResult.Ok)
             {
@@ -25,7 +25,7 @@ namespace BardicBytes.BardicFramework.Platform
         public override void SendEvent(string eventname, Dictionary<string,object> data)
         {
 
-#if ENABLE_CLOUD_SERVICES_ANALYTICS && !UNITY_EDITOR
+#if BB_ENABLE_ANALYTICS && !UNITY_EDITOR
             var r = Analytics.CustomEvent(eventname, data);
             if(r != AnalyticsResult.Ok)
             {
@@ -39,7 +39,7 @@ namespace BardicBytes.BardicFramework.Platform
         public override void SendEvent(string eventname, Vector3 data)
         {
 
-#if ENABLE_CLOUD_SERVICES_ANALYTICS && !UNITY_EDITOR
+#if BB_ENABLE_ANALYTICS && !UNITY_EDITOR
             var r = Analytics.CustomEvent(eventname, data);
             if(r != AnalyticsResult.Ok)
             {
