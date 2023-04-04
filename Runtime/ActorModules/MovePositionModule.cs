@@ -1,5 +1,4 @@
 //alex@bardicbytes.com
-using BardicBytes.BardicFramework;
 using BardicBytes.BardicFramework.EventVars;
 using UnityEngine;
 
@@ -29,7 +28,7 @@ namespace BardicBytes.BardicFramework.ActorModules
             base.OnValidate();
             if (debug_warnIfTagIsNotUnique && Target != null && !Target.UniqueTag)
             {
-                Debug.LogWarning(name+"'s Target " + Target.name + " may have multiple instances. Check \"UniqueTag\" field", this);
+                Debug.LogWarning(name + "'s Target " + Target.name + " may have multiple instances. Check \"UniqueTag\" field", this);
             }
 
             if (DisableOnCollision && !Actor.HasModule<CollisionModule>())
@@ -58,7 +57,7 @@ namespace BardicBytes.BardicFramework.ActorModules
 
         protected virtual void FixedUpdate()
         {
-            if(Target == null && initialTarget != null)
+            if (Target == null && initialTarget != null)
             {
                 Target = initialTarget;
             }
@@ -67,8 +66,8 @@ namespace BardicBytes.BardicFramework.ActorModules
                 enabled = false;
                 return;
             }
-            if(initialTarget != null 
-                && !Target.HasActiveActors 
+            if (initialTarget != null
+                && !Target.HasActiveActors
                 && initialTarget != Target)
             {
                 Target = initialTarget;

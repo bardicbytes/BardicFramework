@@ -43,7 +43,7 @@ namespace BardicBytes.BardicFramework.Physics
 
         public float GetSpeed(float dt)
         {
-            if(isAccelerating)
+            if (isAccelerating)
             {
                 acceleration += jerk * dt;
                 if (acceleration > maxAccel) acceleration = maxAccel;

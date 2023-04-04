@@ -22,9 +22,9 @@ namespace BardicBytes.BardicFramework.Actions
         protected int currentPhaseIndex;
         public GenericAction<TAction, TPerformer, TRuntime>.PhaseData CurrentPhaseData { get { return action.GetPhaseData(currentPhaseIndex); } }
 
-        public string WhatAndWhy { get { return Action.FullName+" is in the state "+stateMachine.CurrentState.name+" because... "+stateMachine.CurrentState.Why; } }
+        public string WhatAndWhy { get { return Action.FullName + " is in the state " + stateMachine.CurrentState.name + " because... " + stateMachine.CurrentState.Why; } }
 
-        public GenericActionRuntime() {} 
+        public GenericActionRuntime() { }
 
         public GenericActionRuntime(TAction action, TPerformer actionPerformer)
         {
@@ -35,7 +35,7 @@ namespace BardicBytes.BardicFramework.Actions
             SetNewStateMachine();
             StartAction();
         }
-        
+
         public override void Update()
         {
             base.Update();
@@ -48,7 +48,7 @@ namespace BardicBytes.BardicFramework.Actions
             if (action == null || actionPerformer == null) return null;
             List<SimpleState> phases = new List<SimpleState>();
             //Debug.Assert(action != null);
-            for(int i = action.PhaseDataCount -1; i >= 0; i--)
+            for (int i = action.PhaseDataCount - 1; i >= 0; i--)
             {
                 SimpleState next = null;
                 if (i + 1 < action.PhaseDataCount) next = phases[i + 1];
@@ -61,13 +61,13 @@ namespace BardicBytes.BardicFramework.Actions
                     duration = action.GetPhaseData(i).duration
                 });
             }
-            
+
             return new SimpleStateMachine(phases.ToArray());
         }
 
         public override void StopAction()
         {
-            if(IsInProgress) Debug.Log(Action.FullName + " Stopping while in progress. DurationAlive: " + (Time.time - startTime), Action);
+            if (IsInProgress) Debug.Log(Action.FullName + " Stopping while in progress. DurationAlive: " + (Time.time - startTime), Action);
             base.StopAction();
         }
 
@@ -86,7 +86,7 @@ namespace BardicBytes.BardicFramework.Actions
 
         public override string ToString()
         {
-            return action.name+"\n"+stateMachine.ToString();
+            return action.name + "\n" + stateMachine.ToString();
         }
     }
 }

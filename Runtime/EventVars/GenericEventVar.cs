@@ -1,7 +1,6 @@
 ﻿//alex@bardicbytes.com
 //why? https://www.youtube.com/watch?v=raQ3iHhE_Kk
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 #if UNITY_EDITOR
@@ -68,7 +67,7 @@ namespace BardicBytes.BardicFramework.EventVars
         {
             get
             {
-                Debug.Assert(!RequireInstancing || IsActorInstance, name+" "+(IsActorInstance ? "Is ActorInst": "Not ActorInst"));
+                Debug.Assert(!RequireInstancing || IsActorInstance, name + " " + (IsActorInstance ? "Is ActorInst" : "Not ActorInst"));
                 return Eval(StoredValue);
             }
         }

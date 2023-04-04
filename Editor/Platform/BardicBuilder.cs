@@ -1,12 +1,11 @@
 //alex@bardicbytes.com
+using BardicBytes.BardicFramework;
+using BardicBytes.BardicFramework.Platform;
+using System.Diagnostics;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Diagnostics;
-using System.IO;
-using BardicBytes.BardicFramework.Platform;
-using BardicBytes.BardicFramework;
-using UnityEditor.Presets;
 
 namespace BardicBytes.BardicFrameworkEditor.Platform
 {
@@ -28,14 +27,14 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
 
         string PathSuffix => target == BuildTarget.WebGL ? "" : string.Format(@"\{0}.exe", exeName);
 
-        public string[] EditorFieldNames => new string[]{"scenes"};
+        public string[] EditorFieldNames => new string[] { "scenes" };
         public bool DrawOtherFields => true;
 
         //private const string BACKUP = "BackUpThisFolder_ButDontShipItWithYourGame";
 
         public void SetEnvironment()
         {
-            UnityEngine.Debug.Log("Setting Platform Environment "+name);
+            UnityEngine.Debug.Log("Setting Platform Environment " + name);
             System.Text.StringBuilder buildLog = new System.Text.StringBuilder();
             if (string.IsNullOrEmpty(path))
             {
@@ -47,7 +46,7 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
             onPreBuild.Invoke();
 
             PlayerSettings.SetScriptingDefineSymbolsForGroup(group, defines);
-            UnityEngine.Debug.Log("Platform Environment Set "+name);
+            UnityEngine.Debug.Log("Platform Environment Set " + name);
 
         }
 
@@ -56,7 +55,7 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
         public void ChangeEnvironment()
         {
             SetEnvironment();
-            EditorUserBuildSettings.SwitchActiveBuildTarget(group,target);
+            EditorUserBuildSettings.SwitchActiveBuildTarget(group, target);
         }
 
         [ContextMenu("Start Build")]
@@ -72,7 +71,7 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
                     scenePaths[i] = AssetDatabase.GetAssetPath(scenes[i]);
 
                 var report = BuildPipeline.BuildPlayer(scenePaths, path + PathSuffix, target, GetBuildOptions());
-                if(report.summary.result == UnityEditor.Build.Reporting.BuildResult.Succeeded) OpenFolder();
+                if (report.summary.result == UnityEditor.Build.Reporting.BuildResult.Succeeded) OpenFolder();
                 var bi = BuildInfo.LoadDefault();
                 UnityEngine.Debug.Log("Built " + name + " " + bi + " " + " to " + path);
             }
@@ -95,7 +94,7 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
                 return bo;
             }
         }
-        
+
 
         [ContextMenu("Open Folder")]
         private void OpenFolder()

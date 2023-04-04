@@ -9,7 +9,7 @@ namespace BardicBytes.BardicFramework
     /// </summary>
     public abstract class ActorModule : MonoBehaviour
     {
-        [field:HideInInspector]
+        [field: HideInInspector]
         [field: SerializeField]
         public Actor Actor { get; protected set; }
 
@@ -22,7 +22,7 @@ namespace BardicBytes.BardicFramework
 
         protected virtual void OnValidate()
         {
-            if(Actor == null) Actor = GetComponent<Actor>();
+            if (Actor == null) Actor = GetComponent<Actor>();
         }
 
         /// <summary>
@@ -43,14 +43,14 @@ namespace BardicBytes.BardicFramework
         /// <summary>
         /// No need to call Base.ActorUpdate when extending ActorModule.
         /// </summary>
-        protected virtual void ActorUpdate() {}
+        protected virtual void ActorUpdate() { }
         /// <summary>
         /// No need to call Base.ActorFixedUpdate when extending ActorModule.
         /// </summary>
         protected virtual void ActorFixedUpdate() { }
 
-        public virtual void CollectActorDebugInfo(System.Text.StringBuilder sb) {}
-        
+        public virtual void CollectActorDebugInfo(System.Text.StringBuilder sb) { }
+
         public T GetModule<T>() where T : Component => Actor.GetModule<T>();
         public System.Collections.Generic.List<T> GetModules<T>() where T : Component => Actor.GetModules<T>();
 

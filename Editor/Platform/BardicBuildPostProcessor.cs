@@ -15,9 +15,9 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
             for (int i = 0; i < report.GetFiles().Length; i++)
             {
                 sb.Append(report.GetFiles()[i].path.Replace(lastBuilderPath, ""));
-                if(i != report.GetFiles().Length - 1) sb.Append(", ");
+                if (i != report.GetFiles().Length - 1) sb.Append(", ");
             }
-            Debug.Log("Build Complete. "+report.GetFiles().Length+" files. \n"+sb.ToString());
+            Debug.Log("Build Complete. " + report.GetFiles().Length + " files. \n" + sb.ToString());
         }
     }
 }

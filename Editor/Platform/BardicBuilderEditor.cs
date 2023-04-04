@@ -9,11 +9,11 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
     {
         protected override void OnInspectorGUIBeforeOtherFields()
         {
-            if(GUILayout.Button("Build Now"))
+            if (GUILayout.Button("Build Now"))
             {
                 Target.BuildGame();
             }
         }
-        
+
     }
 }

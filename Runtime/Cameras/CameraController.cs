@@ -35,14 +35,14 @@ namespace BardicBytes.BardicFramework.Cameras
         protected Camera targetCam = default;
         [SerializeField]
         protected bool activateOnAwake = false;
-        
+
         [SerializeField]
         protected float bloomMult = 1;
 
         [SerializeField]
         [HideInInspector]
         protected List<Camera> childCameras;
-        
+
         public Camera Camera => targetCam;
 
         public virtual float SizeMult => 1f;

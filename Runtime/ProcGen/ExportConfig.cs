@@ -9,13 +9,13 @@ namespace BardicBytes.BardicFramework.ProcGen
     [System.Serializable]
     public class ExportConfig
     {
-        [field:HideInInspector] [field:SerializeField] public string ExportGuid { get; protected set; }
+        [field: HideInInspector] [field: SerializeField] public string ExportGuid { get; protected set; }
 
         [field: SerializeField] public bool ForceSquare { get; protected set; } = true;
         [field: SerializeField] public RectInt TexRect { get; protected set; } = new RectInt(0, 0, 256, 256);
         [Tooltip("The z depth of the 3d noise generated. (for voxels)")]
         [field: SerializeField] public int DimDepth { get; protected set; } = 1;
-        [field:Space]
+        [field: Space]
         [field: SerializeField] public TextureWrapMode WrapMode { get; protected set; } = TextureWrapMode.Repeat;
         [field: SerializeField] public FilterMode FilterMode { get; protected set; } = FilterMode.Bilinear;
         [field: SerializeField] public int AnisoLvl { get; protected set; } = 9;

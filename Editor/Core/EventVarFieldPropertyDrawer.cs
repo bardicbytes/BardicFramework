@@ -20,8 +20,8 @@ namespace BardicBytes.BardicFrameworkEditor
 
             var r = new Rect(position.x, position.y, 200, position.height);
             SerializedProperty evProp = EVFieldProperty.FindPropertyRelative("srcEV");
-            
-            
+
+
             if (evProp.objectReferenceValue == null)
             {
                 EditorGUI.PropertyField(r, EVFieldProperty.FindPropertyRelative("fallbackValue"), GUIContent.none);
@@ -40,7 +40,7 @@ namespace BardicBytes.BardicFrameworkEditor
             {
                 var module = EVFieldProperty.serializedObject.targetObject as ActorModule;
                 moduleProp.objectReferenceValue = module;
-                if(module != null) EditorUtility.SetDirty(module);
+                if (module != null) EditorUtility.SetDirty(module);
             }
             EditorGUI.EndProperty();
         }

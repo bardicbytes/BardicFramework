@@ -1,5 +1,4 @@
 //alex@bardicbytes.com
-using BardicBytes.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,14 +13,14 @@ namespace BardicBytes.BardicFramework
         {
             base.OnValidate();
             bool refresh = false;
-            for(int i =0; !refresh && i < Tags.Length; i++)
+            for (int i = 0; !refresh && i < Tags.Length; i++)
             {
-                if(Tags[i] == null)
+                if (Tags[i] == null)
                 {
                     refresh = true;
                 }
             }
-            if(refresh)
+            if (refresh)
             {
                 List<ActorTag> tagList = new List<ActorTag>(Tags);
                 for (int i = 0; i < tagList.Count; i++)

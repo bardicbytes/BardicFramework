@@ -11,36 +11,35 @@ using UnityEngine;
 using Steamworks;
 #endif
 
-using System;
 using UnityEngine.Audio;
 using SF = UnityEngine.SerializeField;
 using BardicBytes.BardicFramework.EventVars;
 
 namespace BardicBytes.BardicFramework.Platform
 {
-	//
-	// The SteamManager provides a base implementation of Steamworks.NET on which you can build upon.
-	// It handles the basics of starting up and shutting down the SteamAPI for use.
-	
-	[CreateAssetMenu(menuName = Prefixes.Platform + "Steam")]
-	public class SteamManager : PlatformManager
-	{
-		//public const int APP_ID = 1471600;
-		//public const int EP1DLC_ID = 1885890;
-		//public const int EP2DLC_ID = 1885891;
-		//public const int EP3DLC_ID = 1923610;
+    //
+    // The SteamManager provides a base implementation of Steamworks.NET on which you can build upon.
+    // It handles the basics of starting up and shutting down the SteamAPI for use.
 
-		[SF] private uint BASE_APP_ID;// = { APP_ID, APP_ID, EP1DLC_ID, EP2DLC_ID, EP3DLC_ID };
-		[SF] private uint[] EP_DLC_ID;// = { APP_ID, APP_ID, EP1DLC_ID, EP2DLC_ID, EP3DLC_ID };
+    [CreateAssetMenu(menuName = Prefixes.Platform + "Steam")]
+    public class SteamManager : PlatformManager
+    {
+        //public const int APP_ID = 1471600;
+        //public const int EP1DLC_ID = 1885890;
+        //public const int EP2DLC_ID = 1885891;
+        //public const int EP3DLC_ID = 1923610;
 
-		[SF] private AudioMixer mixer = default;
-		[SF] private string mixerParam = "MusicVolume";
-		[SF] BoolEventVar onOverlayActive;
-		//[SF] private UnityEvent<bool> onOverlayActive;
+        [SF] private uint BASE_APP_ID;// = { APP_ID, APP_ID, EP1DLC_ID, EP2DLC_ID, EP3DLC_ID };
+        [SF] private uint[] EP_DLC_ID;// = { APP_ID, APP_ID, EP1DLC_ID, EP2DLC_ID, EP3DLC_ID };
 
-		protected uint accountID = default;
-		public override string AccountID => "s" + accountID.ToString();
-		public override string Platform => "steam";
+        [SF] private AudioMixer mixer = default;
+        [SF] private string mixerParam = "MusicVolume";
+        [SF] BoolEventVar onOverlayActive;
+        //[SF] private UnityEvent<bool> onOverlayActive;
+
+        protected uint accountID = default;
+        public override string AccountID => "s" + accountID.ToString();
+        public override string Platform => "steam";
 
 #if !DISABLESTEAMWORKS
 	private float prevVal;
@@ -162,5 +161,5 @@ namespace BardicBytes.BardicFramework.Platform
 
 #endif
 
-	}
+    }
 }

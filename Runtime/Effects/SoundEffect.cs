@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.Effects
 {
-    [CreateAssetMenu(menuName = Prefixes.Effects+"Sound Effect")]
+    [CreateAssetMenu(menuName = Prefixes.Effects + "Sound Effect")]
     public class SoundEffect : SimpleGenericEventVar<SoundEffect.PlayRequest>
     {
         [System.Serializable]
@@ -69,7 +69,7 @@ namespace BardicBytes.BardicFramework.Effects
             }
         }
 
-        public enum ClipSelectionMode { Random = 0, LoopInOrder = 1, RandomNonRepeat = 2, IntroLoopOutro = 3}
+        public enum ClipSelectionMode { Random = 0, LoopInOrder = 1, RandomNonRepeat = 2, IntroLoopOutro = 3 }
 
         [SerializeField]
         private AudioClip[] clips = default;
@@ -98,7 +98,7 @@ namespace BardicBytes.BardicFramework.Effects
         [SerializeField]
         private float minInterval = 0;
         [SerializeField]
-        [Range(0f,1f)]
+        [Range(0f, 1f)]
         private float startTime = 0f;
 
         private int indexPlayed = -1;
@@ -215,19 +215,19 @@ namespace BardicBytes.BardicFramework.Effects
                 {
                     bool loopCountValid = this.autoIncrementAfterLoops > 0 && loopCount >= autoIncrementAfterLoops;
                     //not played OR played outro
-                    if(indexPlayed == -1 || indexPlayed == clips.Length - 1)
+                    if (indexPlayed == -1 || indexPlayed == clips.Length - 1)
                     {
                         //Debug.Log("starting " + name);
                         indexPlayed = 0;
                     }
-                    else if(DoOutro)
+                    else if (DoOutro)
                     {
                         //Debug.Log("ending " + name);
                         playedOutro = true;
                         DoOutro = false;
                         indexPlayed = clips.Length - 1;
                     }
-                    else if(indexPlayed == 0 || ((DoNextLoop || loopCountValid  ) && indexPlayed >= 1 && indexPlayed < clips.Length - 2))
+                    else if (indexPlayed == 0 || ((DoNextLoop || loopCountValid) && indexPlayed >= 1 && indexPlayed < clips.Length - 2))
                     {
                         //played intro OR next loop is queued up
                         //Debug.Log("incrementing music loop "+name);
@@ -235,7 +235,7 @@ namespace BardicBytes.BardicFramework.Effects
                         DoNextLoop = false;
                         loopCount = 0;
                     }
-                    else if ((DoNextLoop || loopCountValid ) && indexPlayed == clips.Length - 2)
+                    else if ((DoNextLoop || loopCountValid) && indexPlayed == clips.Length - 2)
                     {
                         //Debug.Log("resetting music loop " + name);
                         indexPlayed = 1;
@@ -252,7 +252,7 @@ namespace BardicBytes.BardicFramework.Effects
                 {
                     indexPlayed = Random.Range(0, clips.Length);
                 }
-                
+
                 return clips[indexPlayed];
             }
         }

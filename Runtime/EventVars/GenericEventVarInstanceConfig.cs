@@ -9,6 +9,6 @@
 //    public abstract class GenericEventVarInstanceConfigX<InT, OutT, EvT> : EVInstConfig where EvT : BaseGenericEventVar<InT, OutT, EvT>
 //    {
 //        //public static implicit operator EvT(GenericEventVarInstanceConfig<InT, OutT, EvT> c) => c == null ? null : c.RuntimeInstance;
-        
+
 //    }
 //}

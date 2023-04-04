@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.Effects
 {
-    [CreateAssetMenu(menuName = Prefixes.Effects+"SFX Handle")]
-    public class SFXHandleEventVar : SimpleGenericEventVar<SoundEffect.ActiveHandle> 
+    [CreateAssetMenu(menuName = Prefixes.Effects + "SFX Handle")]
+    public class SFXHandleEventVar : SimpleGenericEventVar<SoundEffect.ActiveHandle>
     {
         public override SoundEffect.ActiveHandle To(EventVars.EVInstData bc) => (SoundEffect.ActiveHandle)bc.SystemObjectValue;
 #if UNITY_EDITOR

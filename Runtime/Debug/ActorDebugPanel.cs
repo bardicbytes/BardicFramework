@@ -1,6 +1,4 @@
 using BardicBytes.BardicFramework.EventVars;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 

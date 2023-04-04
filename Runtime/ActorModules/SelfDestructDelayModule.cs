@@ -1,4 +1,3 @@
-using BardicBytes.BardicFramework;
 using UnityEngine;
 
 namespace BardicBytes.BardicFramework.ActorModules
@@ -26,7 +25,7 @@ namespace BardicBytes.BardicFramework.ActorModules
 
         private bool DestructingHandler()
         {
-            if(Time.frameCount - lastFrame >= 30)
+            if (Time.frameCount - lastFrame >= 30)
             {
                 //been more than a second, its a new destuct
                 lastFrame = Time.frameCount;
@@ -34,7 +33,7 @@ namespace BardicBytes.BardicFramework.ActorModules
                 return false;
             }
 
-            if(ScaledTime && (Time.time - lastTime < Delay))
+            if (ScaledTime && (Time.time - lastTime < Delay))
             {
                 return false;
             }
