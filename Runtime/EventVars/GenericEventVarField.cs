@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-    public abstract class GenericEventVarField<InT,OutT, EvT> : EventVarField where EvT : GenericEventVar<InT,OutT,EvT>
+    public abstract class GenericEventVarField<InT, OutT, EvT> : EventVarField where EvT : GenericEventVar<InT, OutT, EvT>
     {
         public static implicit operator OutT(GenericEventVarField<InT, OutT, EvT> f) => f.Eval();
         public OutT fallbackValue = default;
@@ -24,12 +24,12 @@ namespace BardicBytes.BardicFramework.EventVars
             {
 
             }
-            else if(module.GetModule<EventVarInstancer>().HasInstance(srcEV))
+            else if (module.GetModule<EventVarInstancer>().HasInstance(srcEV))
             {
                 var ai = module.Actor.GetInstance(srcEV);
-                if(ai == null && srcEV.RequireInstancing)
+                if (ai == null && srcEV.RequireInstancing)
                 {
-                    Debug.LogWarning("failed to find instance for "+srcEV.name+" in "+module.ActorName);
+                    Debug.LogWarning("failed to find instance for " + srcEV.name + " in " + module.ActorName);
                 }
                 if (ai == null) return srcEV != null ? srcEV.Value : fallbackValue;
                 return ai.Eval<InT, OutT>();

@@ -18,7 +18,7 @@ namespace BardicBytes.BardicFramework
         {
             if (type == LogType.Exception)
             {
-                globalException.Raise(logString+"\n"+stackTrace);
+                globalException.Raise(logString + "\n" + stackTrace);
                 onException.Invoke();
                 Time.timeScale = 0;
             }

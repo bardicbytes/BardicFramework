@@ -40,7 +40,7 @@ namespace BardicBytes.BardicFramework.Effects
         private List<SoundEffect.ActiveHandle> spawnedSfxHandles;
         private List<SpecialEffect.ActiveHandle> activeFX;
         private Dictionary<SoundEffect, int> lastPlay;
-        private SoundEffect.ActiveHandle[] musicHandles;        
+        private SoundEffect.ActiveHandle[] musicHandles;
 
         private void Awake()
         {
@@ -70,8 +70,8 @@ namespace BardicBytes.BardicFramework.Effects
             {
                 bank.GetEffect(i).AddListener(HandlePlayRequest);
             }
-        }    
-        
+        }
+
 
         private void HandleOnSFXRemoved(SoundEffect sfx)
         {
@@ -140,7 +140,7 @@ namespace BardicBytes.BardicFramework.Effects
 
                 //the queued request is for THIS channel, and the channel is open
                 //todo: make this "musicHandles[i].spawnedSource == null || !musicHandles[i].spawnedSource.isPlaying" bit more reusable. it's in like 3 places
-                if (hasQueuedRequest && queuedRequest.sfx.MusicChannel == i 
+                if (hasQueuedRequest && queuedRequest.sfx.MusicChannel == i
                     && (musicHandles[i].spawnedSource == null || !musicHandles[i].spawnedSource.isPlaying))
                 {
                     this.HandlePlayRequest(queuedRequest);
@@ -174,7 +174,7 @@ namespace BardicBytes.BardicFramework.Effects
 
         public void UpdateActiveFX(int fxIndex)
         {
-            UnityEngine.Profiling.Profiler.BeginSample("UpdateActiveFX "+fxIndex);
+            UnityEngine.Profiling.Profiler.BeginSample("UpdateActiveFX " + fxIndex);
 
             SpecialEffect.ActiveHandle handle = activeFX[fxIndex];
 
@@ -208,7 +208,7 @@ namespace BardicBytes.BardicFramework.Effects
             //every beat has fired and their sounds or particles have stopped or finished... or the timeout lapsed
             if (allComplete || Time.time >= handle.startTime + fx.MaxLife)
             {
-                 for (int j = 0; j < handle.spawnedParticles.Length; j++)
+                for (int j = 0; j < handle.spawnedParticles.Length; j++)
                 {
                     if (handle.spawnedParticles[j] == null) continue;
                     handle.spawnedParticles[j].gameObject.SetActive(false);
@@ -273,12 +273,12 @@ namespace BardicBytes.BardicFramework.Effects
 
                 handle.spawnedParticles[beatIndex] = handle.particlePools[beatIndex].Spawn<ParticleSystem>(handle.particlePools[beatIndex].transform, handle.request.Pos, r);
             }
-            else if(handle.particlePools[beatIndex] == null && b.particlePrefab != null)
+            else if (handle.particlePools[beatIndex] == null && b.particlePrefab != null)
             {
-                debugMsg?.Raise(handle + " PlayBeat " + beatIndex + " has no particle pool, but has a prefab! "+b.particlePrefab);
+                debugMsg?.Raise(handle + " PlayBeat " + beatIndex + " has no particle pool, but has a prefab! " + b.particlePrefab);
             }
 
-            if(b.sfx != null)
+            if (b.sfx != null)
             {
                 b.sfx.Play(handle.request.target, handle.request.Pos,
                    (SoundEffect.ActiveHandle sfxHandle) =>
@@ -309,7 +309,7 @@ namespace BardicBytes.BardicFramework.Effects
                 //h.request.sfx.DoOutro = true; //this doesn't make sense cause we release the handle in the next few lines
                 //musicHandles[index] = h;
             }
-            else if(!h.request.sfx.HasOutro)
+            else if (!h.request.sfx.HasOutro)
             {
                 //Debug.Log("stopping music-no outro: "+h.request.sfx.name);
                 //h.spawnedSource.Stop();
@@ -340,7 +340,7 @@ namespace BardicBytes.BardicFramework.Effects
         private void HandlePlayRequest(SpecialEffect.PlayRequest request)
         {
             if (!enabled) return;
-            
+
             var handle = new SpecialEffect.ActiveHandle(request);
             activeFX.Add(handle);
             if (request.receiveHandleCallback != null)
@@ -367,7 +367,7 @@ namespace BardicBytes.BardicFramework.Effects
 
                 //the requested channel has music playing, transitioning, or fading out
                 //queue the request.
-                if (musicHandles[request.sfx.MusicChannel].spawnedSource != null 
+                if (musicHandles[request.sfx.MusicChannel].spawnedSource != null
                     && musicHandles[request.sfx.MusicChannel].spawnedSource.isPlaying)
                 {
                     //Debug.Log("HandlePlayRequest, queueing" + request.sfx.name);
@@ -376,7 +376,7 @@ namespace BardicBytes.BardicFramework.Effects
                     queuedRequest = request;
                     hasQueuedRequest = true;
                     return;
-                }                
+                }
 
                 for (int i = 0; i < request.sfx.MusicAdjustments.Length; i++)
                 {
@@ -409,7 +409,7 @@ namespace BardicBytes.BardicFramework.Effects
 #endif
             bool doDebugMute = debugMusicOff && Debug.isDebugBuild && request.sfx.IsMusic;
 
-            
+
 
             if (doDebugMute) volume = 0f;
             else if (isOverplay) volume *= .1f;
@@ -424,7 +424,7 @@ namespace BardicBytes.BardicFramework.Effects
                 s.time = s.clip.length * request.sfx.StartTime;
                 s.spatialBlend = request.twoD ? 0 : min2DBlend;
                 s.pitch = 1 - request.sfx.RandomPitchRange / 2f + UnityEngine.Random.Range(0, request.sfx.RandomPitchRange) + request.sfx.PitchOffset;
-                if(!request.sfx.IsMusic) spawnedSources.Add(s);
+                if (!request.sfx.IsMusic) spawnedSources.Add(s);
                 //if(Debug.isDebugBuild && request.sfx.IsMusic) Debug.LogFormat("Play {0}, outro? {1}", request.sfx.name, request.sfx.HasOutro);
                 s.Play();
             }
@@ -434,7 +434,7 @@ namespace BardicBytes.BardicFramework.Effects
             if (request.sfx.IsMusic)
             {
                 musicHandles[request.sfx.MusicChannel] = sfx_handle;
-                if(request.sfx.MusicChannel == 0) musicSourceChangeEventVar.Raise(sfx_handle);
+                if (request.sfx.MusicChannel == 0) musicSourceChangeEventVar.Raise(sfx_handle);
             }
             else
             {
@@ -447,7 +447,7 @@ namespace BardicBytes.BardicFramework.Effects
         {
             if (!handle.wasConstructed)
             {
-                Debug.LogWarning("Avoid this: non constructed skip beat request reaised for handle \n"+handle);
+                Debug.LogWarning("Avoid this: non constructed skip beat request reaised for handle \n" + handle);
                 return;
             }
             //single beat? just stop it
@@ -460,11 +460,11 @@ namespace BardicBytes.BardicFramework.Effects
                     return;
                 }
             }
-            catch(NullReferenceException nre)
+            catch (NullReferenceException nre)
             {
                 Debug.LogError(nre);
             }
-            
+
 
             //multiple beats, skip should end looping audio/fx
             for (int beatIndex = 0; beatIndex < handle.request.fx.BeatCount; beatIndex++)

@@ -23,7 +23,7 @@ namespace BardicBytes.BardicFramework.AssetManagement
 
         private void OnValidate()
         {
-            if (items == null) Debug.LogWarning("items = null, "+name,this);
+            if (items == null) Debug.LogWarning("items = null, " + name, this);
         }
 
         private void OnEnable()
@@ -36,12 +36,12 @@ namespace BardicBytes.BardicFramework.AssetManagement
         {
             return lookup.ContainsKey(name);
         }
-        public virtual T[] ToArray()=> items.ToArray();
+        public virtual T[] ToArray() => items.ToArray();
 
         public T Lookup(string name)
         {
             if (this.lookup == null) OnEnable();
-            Debug.Assert(lookup.ContainsKey(name), this.name+ " does not have "+name);
+            Debug.Assert(lookup.ContainsKey(name), this.name + " does not have " + name);
             return lookup[name];
         }
 

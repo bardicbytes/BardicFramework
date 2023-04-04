@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.ProcGen
 {
-    [CreateAssetMenu(menuName = Prefixes.ProcGen+"TexLayer")]
+    [CreateAssetMenu(menuName = Prefixes.ProcGen + "TexLayer")]
     public class TexLayer : ScriptableObject, IBardicEditorable
     {
         public static implicit operator Texture2D(TexLayer tex) => tex.Generated2D;
@@ -14,7 +14,7 @@ namespace BardicBytes.BardicFramework.ProcGen
 
         [field: SerializeField] public CombineMode Mode = CombineMode.Add;
         [field: SerializeField] public bool UseSeed { get; protected set; } = true;
-        [field: SerializeField] public int Seed { get; protected set; }  = 99;
+        [field: SerializeField] public int Seed { get; protected set; } = 99;
         [field: SerializeField] public float Freq { get; protected set; } = 5f;
         [field: SerializeField] public Vector3 Offset { get; protected set; } = Vector3.zero;
         [field: SerializeField] public AnimationCurve ValueOffset { get; protected set; } = default;
@@ -22,7 +22,7 @@ namespace BardicBytes.BardicFramework.ProcGen
         [field: SerializeField] public ExportConfig OutputConfig = new ExportConfig(512, 1);
         [field: SerializeField] public Color BGColor { get; protected set; } = Color.clear;
         [field: SerializeField] public List<TexLayer> Layers = new List<TexLayer>();
-        
+
         [Space]
         [SerializeField] private Texture2D[] pregenerated = null;
 
@@ -34,7 +34,7 @@ namespace BardicBytes.BardicFramework.ProcGen
         public Texture3D Generated3D => generated3D == null ? Generate3D(Vector3.zero, null) : null;
         public Texture2D Generated2D => pregenerated[0] == null ? Generate() : pregenerated[0];
 
-        public string[] EditorFieldNames => new string[] { "Layers"};
+        public string[] EditorFieldNames => new string[] { "Layers" };
         public bool DrawOtherFields => true;
         void Reset()
         {
@@ -133,7 +133,7 @@ namespace BardicBytes.BardicFramework.ProcGen
                 else generated3D = (Texture3D)texture;
             }
             return (T)texture;
-            
+
             string GetTexName(string suffix = "")
             {
                 return string.Format("Tex_{0}_{1}x{2}x{3}{4}", name, TexWidth, TexHeight, DimDepth, suffix);

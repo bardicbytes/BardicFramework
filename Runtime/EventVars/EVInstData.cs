@@ -12,10 +12,10 @@ namespace BardicBytes.BardicFramework.EventVars
         [HideInInspector]
         [SerializeField]
         private string editorName = "unnamed";
-        
+
         [SerializeField]
         private EventVar actorInstance;
-        
+
         [field: SerializeField]
         public EventVar Src { get; protected set; }
         [field: SerializeField] public string StringValue { get; set; }
@@ -25,13 +25,15 @@ namespace BardicBytes.BardicFramework.EventVars
         [field: SerializeField] public Vector3 Vector3Value { get; set; }
         [field: SerializeField] public Vector2Int Vector2IntValue { get; set; }
         [field: SerializeField] public UnityEngine.Object UnityObjectValue { get; set; }
-        [field:SerializeField] public System.Object SystemObjectValue { get; set; }
-        
+        [field: SerializeField] public System.Object SystemObjectValue { get; set; }
+
         private string selector = null;
         [SerializeField]
         private string DEBUG_selstring = "?";
 
-        public EventVar ActorInstance { get
+        public EventVar ActorInstance
+        {
+            get
             {
                 Debug.Assert(Application.isPlaying, "runtime only!");
                 return actorInstance;
@@ -114,7 +116,7 @@ namespace BardicBytes.BardicFramework.EventVars
             return root.FindPropertyRelative(StringFormatting.GetBackingFieldName(name));
         }
 
-        public void RefreshEditorName() => editorName = string.Format("{0}",Src.name);
+        public void RefreshEditorName() => editorName = string.Format("{0}", Src.name);
 
         /// <summary>
         /// Draws a property field for just the right serialized property
@@ -124,12 +126,12 @@ namespace BardicBytes.BardicFramework.EventVars
         /// <returns>true if changed</returns>
         public virtual bool PropField(Rect position, UnityEditor.SerializedProperty evifProp)
         {
-            if( !Src.HasValue)
+            if (!Src.HasValue)
             {
                 return false;
             }
             selector = Src.StoredValueType.FullName;
-            DEBUG_selstring = selector+"";
+            DEBUG_selstring = selector + "";
             bool didDraw = false;
             bool changed = false;
 
@@ -170,7 +172,7 @@ namespace BardicBytes.BardicFramework.EventVars
             {
                 EditorGUI.BeginChangeCheck();
                 EditorGUI.PropertyField(position, FindPropRel("UnityObjectValue"), true);
-                if(EditorGUI.EndChangeCheck())
+                if (EditorGUI.EndChangeCheck())
                 {
                     changed = true;
                     var p = FindPropRel("UnityObjectValue");
@@ -193,7 +195,7 @@ namespace BardicBytes.BardicFramework.EventVars
                 return changed;
             }
 
-            EditorGUI.LabelField(position, "No Instancing Available for "+ Src.StoredValueType.Name);
+            EditorGUI.LabelField(position, "No Instancing Available for " + Src.StoredValueType.Name);
 
             return false;
 
@@ -202,7 +204,7 @@ namespace BardicBytes.BardicFramework.EventVars
                 EditorGUI.BeginChangeCheck();
                 var bp = FindPropRel(propname);
                 if (bp != null) EditorGUI.PropertyField(position, bp);
-                else EditorGUI.LabelField(position, propname+" null. "+evifProp.propertyPath);
+                else EditorGUI.LabelField(position, propname + " null. " + evifProp.propertyPath);
                 didDraw = true;
                 var c = EditorGUI.EndChangeCheck();
                 changed = c;
@@ -216,7 +218,7 @@ namespace BardicBytes.BardicFramework.EventVars
                 if (sp.name == s) return sp;
                 while (sp.Next(true))
                 {
-                    if(sp.name == s) return sp;
+                    if (sp.name == s) return sp;
                 }
                 return null;
             }

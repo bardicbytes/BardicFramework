@@ -1,5 +1,4 @@
 //alex@bardicbytes.com
-using BardicBytes.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,7 +36,7 @@ namespace BardicBytes.BardicFramework.EventVars
             {
                 refreshEvCache = true;
                 List<EventVar> found = new List<EventVar>();
-                for(int i = 0; i < eventVars.Count; i++)
+                for (int i = 0; i < eventVars.Count; i++)
                 {
                     refreshEvCache &= eventVars[i] != null;
                     if (found.Contains(eventVars[i]) || eventVars[i] == null)
@@ -116,7 +115,7 @@ namespace BardicBytes.BardicFramework.EventVars
         [ContextMenu("RefreshEditorNames()")]
         private void RefreshEditorNames()
         {
-            for(int i =0; i < eventVarInstances.Length; i++)
+            for (int i = 0; i < eventVarInstances.Length; i++)
                 eventVarInstances[i].RefreshEditorName();
         }
 #endif
@@ -128,7 +127,7 @@ namespace BardicBytes.BardicFramework.EventVars
 
         private void Initialize()
         {
-            if(isInitialized && Application.isPlaying && evInstanceLookup != null)
+            if (isInitialized && Application.isPlaying && evInstanceLookup != null)
             {
                 return;
             }
@@ -164,7 +163,7 @@ namespace BardicBytes.BardicFramework.EventVars
                 Debug.LogWarning("GetIsntance at Editor time returns null");
                 ev = null;
             }
-            Debug.Assert(ev != null, "has instance, but no instance found?, but that's not cool. Initialized? "+isInitialized);
+            Debug.Assert(ev != null, "has instance, but no instance found?, but that's not cool. Initialized? " + isInitialized);
             return ev;
         }
 
@@ -186,11 +185,11 @@ namespace BardicBytes.BardicFramework.EventVars
 
         public bool HasInstance(EventVar ev)
         {
-            if(!Application.isPlaying)
+            if (!Application.isPlaying)
             {
                 return eventVars.Contains(ev);
             }
-            if(evInstanceLookup == null) Initialize();
+            if (evInstanceLookup == null) Initialize();
             return evInstanceLookup.ContainsKey(ev);
         }
     }

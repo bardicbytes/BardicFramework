@@ -9,7 +9,7 @@ using UnityEditor;
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-    [CreateAssetMenu(menuName = Prefixes.EV+ "EvenVar without Data")]
+    [CreateAssetMenu(menuName = Prefixes.EV + "EvenVar without Data")]
     public class EventVar : ScriptableObject
     {
         [SerializeField]
@@ -26,7 +26,9 @@ namespace BardicBytes.BardicFramework.EventVars
         public virtual Type StoredValueType => default;
         public virtual Type OutputValueType => default;
 
-        public virtual object UntypedStoredValue { get => untypedStoredValue; protected set
+        public virtual object UntypedStoredValue
+        {
+            get => untypedStoredValue; protected set
             {
                 untypedStoredValue = value;
                 debug_StoredValue = untypedStoredValue + "";
@@ -138,7 +140,7 @@ namespace BardicBytes.BardicFramework.EventVars
 
         public virtual void SetInitialValue(EVInstData bc)
         {
-            throw new NotImplementedException("There's no reason to instance an event var without without data. "+this.name);
+            throw new NotImplementedException("There's no reason to instance an event var without without data. " + this.name);
         }
 
         public virtual EVInstData CreateInstanceConfig()
@@ -147,12 +149,12 @@ namespace BardicBytes.BardicFramework.EventVars
         }
 
 #if UNITY_EDITOR
-        
+
         public virtual void SetInitValueOfInstanceConfig(SerializedProperty prop, EVInstData config)
         {
             throw new NotImplementedException("There's no reason to instance an event var without without data." + this.name);
         }
-        
+
         //public virtual void SetInitialValue(SerializedProperty prop)
         //{
         //    throw new NotImplementedException("There's no reason to instance an event var without without data.");

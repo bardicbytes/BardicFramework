@@ -13,7 +13,7 @@ namespace BardicBytes.BardicFramework.Cameras
         [Space]
         [SerializeField]
         private Camera overlay = default;
-        
+
         [Space]
         [SerializeField]
         private Vector2 distLeash = Vector2.zero;
@@ -27,7 +27,7 @@ namespace BardicBytes.BardicFramework.Cameras
         private bool easePos;
         [SerializeField]
         private float camMoveRate = 5;
-        
+
         [Space]
         [SerializeField]
         private float transitionDur = 1;
@@ -69,7 +69,7 @@ namespace BardicBytes.BardicFramework.Cameras
             SetOrthoSize(OrthoSize);
             transform.SetParent(null);
             base.Awake();
-        }   
+        }
 
         protected override void ActorUpdate()
         {
@@ -97,7 +97,7 @@ namespace BardicBytes.BardicFramework.Cameras
                 Vector3 p = Vector3.Lerp(initCamPos, goalCamPos, t);
                 targetCam.transform.position = p;
             }
-            else if(currentOffset.maintainRelativePosition)
+            else if (currentOffset.maintainRelativePosition)
             {
                 targetCam.transform.position = tt.position + currentOffset.position;
             }
@@ -129,11 +129,11 @@ namespace BardicBytes.BardicFramework.Cameras
 
         protected override void SetOrthoSize(float s)
         {
-//#if DEBUG
-//            if(targetCam.orthographicSize != s) Debug.Log("new OS "+s);
-//#endif
+            //#if DEBUG
+            //            if(targetCam.orthographicSize != s) Debug.Log("new OS "+s);
+            //#endif
             base.SetOrthoSize(s);
-            if(overlay != null) overlay.orthographicSize = s;
+            if (overlay != null) overlay.orthographicSize = s;
         }
 
         #region offsets
@@ -185,7 +185,7 @@ namespace BardicBytes.BardicFramework.Cameras
             {
                 yield return null;
                 float t = (Time.time - startTime) / transitionDur;
-                currentOffset.orthoSizeA= Mathf.Lerp(startOffset.orthoSizeA, goalOffset.orthoSizeA, t);
+                currentOffset.orthoSizeA = Mathf.Lerp(startOffset.orthoSizeA, goalOffset.orthoSizeA, t);
                 currentOffset.orthoSizeB = Mathf.Lerp(startOffset.orthoSizeB, goalOffset.orthoSizeB, t);
                 currentOffset.lookAt = Vector3.Lerp(startOffset.lookAt, goalOffset.lookAt, t);
                 currentOffset.position = Vector3.Lerp(startOffset.position, goalOffset.position, t);

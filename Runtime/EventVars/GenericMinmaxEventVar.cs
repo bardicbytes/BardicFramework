@@ -6,7 +6,7 @@ namespace BardicBytes.BardicFramework.EventVars
 {
     public abstract class GenericMinMaxEventVar<T> : SimpleGenericEventVar<T>
     {
-        
+
         [Header("MinMax")]
         [SerializeField]
         protected bool hasMin = false;

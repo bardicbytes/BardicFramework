@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BardicBytes.BardicFramework
@@ -14,7 +12,7 @@ namespace BardicBytes.BardicFramework
         private bool keepVertical = false;
         protected override void ActorUpdate()
         {
-            if(target == null)
+            if (target == null)
             {
                 enabled = false;
                 Debug.Log("Disabling LookAtActorModule", this);

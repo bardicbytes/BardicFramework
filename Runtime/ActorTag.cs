@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework
 {
-    [CreateAssetMenu(menuName = Prefixes.BardicBase+"Actor Tag")]
+    [CreateAssetMenu(menuName = Prefixes.BardicBase + "Actor Tag")]
     public class ActorTag : SimpleGenericEventVar<List<TagModule>>
     {
         [field: SerializeField] public string DisplayName { get; set; }
         [field: SerializeField] public bool UniqueTag { get; set; }
 
         public Actor Actor0 => ActiveActors[0].Actor;
-        public int Count =>  Value.Count;
+        public int Count => Value.Count;
 
         public List<TagModule> ActiveActors { get => base.Value; set => base.Raise(value); }
         public bool HasActiveActors => ActiveActors.Count > 0;
@@ -35,7 +35,7 @@ namespace BardicBytes.BardicFramework
             Debug.Assert(!ActiveActors.Contains(tagMod));
             if (UniqueTag && ActiveActors.Count >= 1)
             {
-                throw new System.Exception(string.Format("Register() called twice on {0}, but it's multiple Tag registrations are not allowed. ",name));
+                throw new System.Exception(string.Format("Register() called twice on {0}, but it's multiple Tag registrations are not allowed. ", name));
             }
             ActiveActors.Add(tagMod);
         }
@@ -63,7 +63,7 @@ namespace BardicBytes.BardicFramework
 
         public void SetTaggedActorsActive(bool active)
         {
-            for(int i = 0; i < ActiveActors.Count; i++)
+            for (int i = 0; i < ActiveActors.Count; i++)
             {
                 ActiveActors[i].gameObject.SetActive(active);
             }
@@ -72,7 +72,7 @@ namespace BardicBytes.BardicFramework
         public List<T> GetTaggedModules<T>() where T : Component
         {
             var modules = new List<T>();
-            for(int i =0; i < ActiveActors.Count; i++)
+            for (int i = 0; i < ActiveActors.Count; i++)
             {
                 var m = ActiveActors[i].GetModule<T>();
                 if (m == null) continue;

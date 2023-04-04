@@ -11,7 +11,7 @@ namespace BardicBytes.BardicFramework.AssetManagement
         private float totalWeight;
 
         public WeightedPrefabRandomizer() : this(optionsArray: null) { }
-        
+
         public WeightedPrefabRandomizer(WeightedPrefab<ComponentType>[] optionsArray)
         {
             if (optionsArray == null)
@@ -79,7 +79,7 @@ namespace BardicBytes.BardicFramework.AssetManagement
 
         public void DoValidate()
         {
-            editorName = prefab != null ? "(" + Weight + ") "+prefab.name : "No Prefab";
+            editorName = prefab != null ? "(" + Weight + ") " + prefab.name : "No Prefab";
         }
     }
 }

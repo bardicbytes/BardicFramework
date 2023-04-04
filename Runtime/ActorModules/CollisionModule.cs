@@ -1,4 +1,3 @@
-using BardicBytes.BardicFramework;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,9 +9,9 @@ namespace BardicBytes.BardicFramework.ActorModules
         [field: SerializeField]
         public bool LogOnCollision = false;
 
-        [field:SerializeField]
+        [field: SerializeField]
         public UnityEvent<Collision> CollisionEntered { get; protected set; }
-        [field:SerializeField]
+        [field: SerializeField]
         //public UnityEvent<Collision> CollisionStayed { get; protected set; }
         //[field: SerializeField]
         public UnityEvent<Collision> CollisionExited { get; protected set; }
@@ -46,7 +45,7 @@ namespace BardicBytes.BardicFramework.ActorModules
             var otherRB = collision.collider.attachedRigidbody;
             var actor = otherRB.GetComponent<Actor>();
             var s = string.Format("[f{2}] Collision! {0} Has Actor: {1}", otherRB.gameObject.name, actor != null, Time.frameCount);
-            
+
             Debug.Log(s, otherRB.gameObject);
         }
     }

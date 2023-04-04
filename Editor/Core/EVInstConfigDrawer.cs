@@ -21,16 +21,16 @@ namespace BardicBytes.BardicFrameworkEditor
 
             //var r = new Rect(position.x, position.y, 75, position.height);
             //var r2 = new Rect(position.x + r.width+5, position.y, position.width - r.width - 5, position.height);
-            
+
             EVInstData bc = (EVInstData)topProp.managedReferenceValue;
 
             try
             {
                 bc.PropField(position, topProp);
             }
-            catch(System.NullReferenceException e)
+            catch (System.NullReferenceException e)
             {
-                EditorGUILayout.LabelField(label.text+" NullRef Caught \n"+e.Message);
+                EditorGUILayout.LabelField(label.text + " NullRef Caught \n" + e.Message);
             }
             EditorGUI.indentLevel = indent;
             EditorGUI.EndProperty();

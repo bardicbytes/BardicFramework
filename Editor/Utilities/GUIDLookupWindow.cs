@@ -9,7 +9,7 @@ namespace Bardic.BardicFrameworkEditor.Utilities
         [MenuItem("Bardic/Guid Lookup...")]
         private static void InitWindow()
         {
-            var window = GetWindow<GUIDLookupWindow>(true,"Guid Lookup", true);
+            var window = GetWindow<GUIDLookupWindow>(true, "Guid Lookup", true);
             window.minSize = new Vector2(450, 150);
             window.maxSize = new Vector2(700, 150);
             window.Show();
@@ -24,8 +24,8 @@ namespace Bardic.BardicFrameworkEditor.Utilities
             GUILayout.BeginHorizontal();
             inputText = EditorGUILayout.TextField("", inputText);
             pathDisp = AssetDatabase.GUIDToAssetPath(inputText);
-            GUILayout.EndHorizontal();            
-            if(pathDisp != null)
+            GUILayout.EndHorizontal();
+            if (pathDisp != null)
             {
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(10f);
@@ -45,7 +45,7 @@ namespace Bardic.BardicFrameworkEditor.Utilities
             GUILayout.FlexibleSpace();
 
             GUILayout.BeginHorizontal();
-            selectedObject = EditorGUILayout.ObjectField("Select Asset for GUID",selectedObject, typeof(Object),false);
+            selectedObject = EditorGUILayout.ObjectField("Select Asset for GUID", selectedObject, typeof(Object), false);
             GUILayout.EndHorizontal();
             if (selectedObject != null)
             {

@@ -7,7 +7,7 @@ namespace BardicBytes.BardicFramework.Actions
     [System.Serializable]
     public abstract class ActionRuntime
     {
-        public class ActionState : TimedState{}
+        public class ActionState : TimedState { }
 
 #if UNITY_EDITOR
 #pragma warning disable 414
@@ -35,7 +35,7 @@ namespace BardicBytes.BardicFramework.Actions
         }
 
         public virtual void StopAction()
-        { 
+        {
             if (IsInProgress)
             {
                 Debug.Log(this + " Stopped Prematurely.");

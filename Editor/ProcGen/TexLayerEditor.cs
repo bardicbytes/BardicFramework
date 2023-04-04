@@ -5,5 +5,5 @@ using UnityEditor;
 namespace BardicBytes.BardicFrameworkEditor.ProcGen
 {
     [CustomEditor(typeof(TexLayer))]
-    public class TexLayerEditor : BardicEditor<TexLayer> {}
+    public class TexLayerEditor : BardicEditor<TexLayer> { }
 }

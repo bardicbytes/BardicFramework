@@ -49,7 +49,7 @@ namespace BardicBytes.BardicFramework.Cameras
             {
                 //Debug.Log("orthosize = "+os);
                 Camera.orthographicSize = os;
-                for(int i =0; i < childCameras.Count; i++)
+                for (int i = 0; i < childCameras.Count; i++)
                 {
                     childCameras[i].orthographicSize = os;
                 }
