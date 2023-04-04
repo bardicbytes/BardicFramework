@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.Cameras
 {
-    [CreateAssetMenu(menuName = Prefixes.Cameras+ "Event Var: Camera Shake")]
+    [CreateAssetMenu(menuName = Prefixes.Cameras + "Event Var: Camera Shake")]
 
     public class CameraShakeEventVar : SimpleGenericEventVar<CameraShakeConfig>
     {

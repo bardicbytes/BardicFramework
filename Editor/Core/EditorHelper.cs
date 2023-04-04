@@ -12,14 +12,14 @@ namespace BardicBytes.BardicFrameworkEditor
             object obj = prop.serializedObject.targetObject;
 
             var paths = prop.propertyPath.Split('.');
-            for(int i =0; i < paths.Length; i++)
+            for (int i = 0; i < paths.Length; i++)
             {
 #pragma warning disable 168
                 try
                 {
                     obj = obj.GetType().GetField(paths[i]).GetValue(obj);
                 }
-                catch(System.NullReferenceException nre)
+                catch (System.NullReferenceException nre)
                 {
                     //Debug.LogWarning(nre.Message);
                     return null;

@@ -13,7 +13,7 @@ namespace BardicBytes.BardicFramework.Actions
         protected void Awake()
         {
             interactionLookup = new Dictionary<ActorTag, InteractionDefinition>();
-            for(int i = 0; i < interactions.Length; i++)
+            for (int i = 0; i < interactions.Length; i++)
             {
                 interactionLookup.Add(interactions[i].ActualizationTag, interactions[i]);
             }
@@ -27,7 +27,7 @@ namespace BardicBytes.BardicFramework.Actions
 
         public Ray GetInteractPoint(ActorTag actualizationTag)
         {
-            if(interactionLookup.ContainsKey(actualizationTag))
+            if (interactionLookup.ContainsKey(actualizationTag))
                 return interactionLookup[actualizationTag].InteractionPoint;
             else
                 return new Ray(transform.position, Vector3.zero);

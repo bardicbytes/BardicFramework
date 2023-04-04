@@ -1,7 +1,6 @@
 //alex@bardicbytes.com
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicSamples.Demo
 {
-    [CreateAssetMenu(menuName = Prefixes.BardicBase+"Demo/Gather Action")]
+    [CreateAssetMenu(menuName = Prefixes.BardicBase + "Demo/Gather Action")]
     public class GatherAction : GenericAction<GatherAction, GatherPerformer, GatherRuntime>
     {
         public class GatherPhaseData : GatherAction.PhaseData

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.Actions
 {
-    public abstract class GenericActionPerformer<TAction, TPerformer, TRuntime> : ActionPerformer 
+    public abstract class GenericActionPerformer<TAction, TPerformer, TRuntime> : ActionPerformer
         where TAction : GenericAction<TAction, TPerformer, TRuntime>
         where TPerformer : GenericActionPerformer<TAction, TPerformer, TRuntime>
         where TRuntime : GenericActionRuntime<TAction, TPerformer, TRuntime>
@@ -47,7 +47,7 @@ namespace BardicBytes.BardicFramework.Actions
         protected override void ActorUpdate()
         {
 
-            for(int i =0; i < activeRuntimes.Count; i++)
+            for (int i = 0; i < activeRuntimes.Count; i++)
             {
                 if (!activeRuntimes[i].IsInProgress)
                 {

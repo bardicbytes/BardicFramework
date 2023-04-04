@@ -9,7 +9,7 @@ namespace BardicBytes.BardicSamples
     [RequireComponent(typeof(CollisionModule))]
     public class HunterModule : ActorModule
     {
-        [field:SerializeField]
+        [field: SerializeField]
         [Tooltip("MovePositionModule's Target will be overridden by this field.")]
         public ActorTag Target { get; set; } = default;
         private MovePositionModule Mover => Actor.GetModule<MovePositionModule>();

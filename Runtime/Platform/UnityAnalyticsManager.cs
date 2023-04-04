@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 #if ENABLE_CLOUD_SERVICES_ANALYTICS
-using UnityEngine.Analytics;
 #endif
 
 namespace BardicBytes.BardicFramework.Platform
@@ -22,7 +21,7 @@ namespace BardicBytes.BardicFramework.Platform
 #endif
         }
 
-        public override void SendEvent(string eventname, Dictionary<string,object> data)
+        public override void SendEvent(string eventname, Dictionary<string, object> data)
         {
 
 #if ENABLE_CLOUD_SERVICES_ANALYTICS && !UNITY_EDITOR

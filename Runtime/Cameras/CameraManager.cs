@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.Cameras
 {
-    [CreateAssetMenu(menuName = Prefixes.Cameras+"Camera Manager")]
+    [CreateAssetMenu(menuName = Prefixes.Cameras + "Camera Manager")]
     public class CameraManager : ScriptableObject
     {
         [SerializeField]

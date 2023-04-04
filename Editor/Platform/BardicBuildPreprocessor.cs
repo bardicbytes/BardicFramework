@@ -11,7 +11,7 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
         public void OnPreprocessBuild(UnityEditor.Build.Reporting.BuildReport report)
         {
 
-            var p = System.IO.Path.Combine(Application.dataPath, "Data","buildinfo.json");
+            var p = System.IO.Path.Combine(Application.dataPath, "Data", "buildinfo.json");
             //Debug.Log("loading "+p);
             //TextAsset ta = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/buildinfo.txt");
             if (System.IO.File.Exists(p))
@@ -21,7 +21,7 @@ namespace BardicBytes.BardicFrameworkEditor.Platform
                 var bi = JsonUtility.FromJson<BuildInfo>(json);
                 bi.Update();
                 System.IO.File.WriteAllText(System.IO.Path.Combine(Application.dataPath, p), bi.ToJson());
-                Debug.Log(bi.ToString()+"\nBardicBuildPreprocessor.OnPreprocessBuild for target " + report.summary.platform + " at path " + report.summary.outputPath);
+                Debug.Log(bi.ToString() + "\nBardicBuildPreprocessor.OnPreprocessBuild for target " + report.summary.platform + " at path " + report.summary.outputPath);
             }
         }
     }

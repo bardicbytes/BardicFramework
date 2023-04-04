@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 namespace BardicBytes.BardicFramework.Effects
 {
-    [CreateAssetMenu(menuName = Prefixes.Effects+"Special Effect")]
+    [CreateAssetMenu(menuName = Prefixes.Effects + "Special Effect")]
     public class SpecialEffect : SimpleGenericEventVar<SpecialEffect.PlayRequest>
     {
         [SerializeField]
@@ -87,9 +87,9 @@ namespace BardicBytes.BardicFramework.Effects
                         continue;
                     }
                     particlePools[i] = Pool.GetCreatePool(request.fx.beats[i].particlePrefab, request.fx.initCount, request.fx.maxCount, Pool.LimitMode.Unlimited);
-                    if(particlePools[i] == null)
+                    if (particlePools[i] == null)
                     {
-                        request.fx.debugMsg?.Raise("ActiveHandle constructor for "+request.fx.name+". particle pool created is null!?");
+                        request.fx.debugMsg?.Raise("ActiveHandle constructor for " + request.fx.name + ". particle pool created is null!?");
                     }
 
                     //Debug.Log("pool getcreated" + particlePools[i]);
@@ -99,7 +99,7 @@ namespace BardicBytes.BardicFramework.Effects
 
             public override string ToString()
             {
-                return  "SpecialEffect.ActiveHandle: " + request.fx.name + " Handle. "+(wasConstructed ? "Constructed " : "NOT Constructed!?") + startTime;
+                return "SpecialEffect.ActiveHandle: " + request.fx.name + " Handle. " + (wasConstructed ? "Constructed " : "NOT Constructed!?") + startTime;
             }
         }
 
@@ -182,8 +182,8 @@ namespace BardicBytes.BardicFramework.Effects
 
         public void Play(PlayRequest request)
         {
-                typedEvent.Invoke(request);
-                untypedEvent.Invoke();
+            typedEvent.Invoke(request);
+            untypedEvent.Invoke();
         }
 
         public override PlayRequest To(EVInstData bc) => (PlayRequest)bc.SystemObjectValue;

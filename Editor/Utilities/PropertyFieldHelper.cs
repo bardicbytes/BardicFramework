@@ -1,7 +1,7 @@
 //alex@bardicbytes.com
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace BardicBytes.BardicFrameworkEditor.Utilities
 {
@@ -21,7 +21,7 @@ namespace BardicBytes.BardicFrameworkEditor.Utilities
         }
 
         public void DrawPropFields(params string[] pPath) => DrawPropFields((pPath != null) && (pPath.Length > 0), pPath);
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -47,7 +47,7 @@ namespace BardicBytes.BardicFrameworkEditor.Utilities
             {
                 serializedObject.ApplyModifiedProperties();
             }
-            catch(System.ArgumentNullException ane)
+            catch (System.ArgumentNullException ane)
             {
                 Debug.LogWarning("ArgumentNullException Caught. Don't mind me. Known issue if it happened while building. Otherwise...?? \n" + ane.Message);
             }
@@ -72,7 +72,7 @@ namespace BardicBytes.BardicFrameworkEditor.Utilities
                     sb.AppendLine(it.name);
                 }
 
-                throw new System.Exception(propPath + " not found in "+serializedObject.ToString()+"\n"+sb.ToString());
+                throw new System.Exception(propPath + " not found in " + serializedObject.ToString() + "\n" + sb.ToString());
             }
 
             bool DrawFoldout(bool drawUnspecified, int specifiedCount)
@@ -94,9 +94,9 @@ namespace BardicBytes.BardicFrameworkEditor.Utilities
                 {
                     nextProp = serializedObject.GetIterator();
                 }
-                catch(System.ArgumentNullException ane)
+                catch (System.ArgumentNullException ane)
                 {
-                    Debug.LogWarning("Exception Caught. "+ane.Message);
+                    Debug.LogWarning("Exception Caught. " + ane.Message);
                     return false;
                 }
 

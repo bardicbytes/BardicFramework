@@ -22,22 +22,22 @@ namespace BardicBytes.BardicFramework.ActorModules
         {
             if (MatchTarget.Count == 0) return;
 
-            if(UseRigidbody && Actor.HasRigidbody)
+            if (UseRigidbody && Actor.HasRigidbody)
             {
-                if(matchPosition)
+                if (matchPosition)
                     Actor.Rigidbody.MovePosition(MatchTarget.Actor0.transform.position);
-                if(matchRotation)
+                if (matchRotation)
                     Actor.Rigidbody.MoveRotation(MatchTarget.Actor0.transform.rotation);
                 if (matchScale)
                     transform.localScale = MatchTarget.Actor0.transform.localScale;
             }
             else
             {
-                if(matchPosition)
+                if (matchPosition)
                     transform.position = MatchTarget.Actor0.transform.position;
-                if(matchRotation)
+                if (matchRotation)
                     transform.rotation = MatchTarget.Actor0.transform.rotation;
-                if(matchScale)
+                if (matchScale)
                     transform.localScale = MatchTarget.Actor0.transform.localScale;
             }
         }

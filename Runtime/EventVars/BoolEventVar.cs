@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-    [CreateAssetMenu(menuName = Prefixes.EV+"Bool")]
+    [CreateAssetMenu(menuName = Prefixes.EV + "Bool")]
 
     public class BoolEventVar : SimpleGenericEventVar<bool>
     {

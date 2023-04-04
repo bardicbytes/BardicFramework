@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace BardicBytes.BardicFramework.EventVars
 {
-   
+
     public abstract class GenericEventVarListener<DataType> : EventVarListener
     {
         [System.Serializable]
@@ -54,11 +54,11 @@ namespace BardicBytes.BardicFramework.EventVars
             if (typedEventVar != null)
             {
                 typedEventVar.AddListener(HandleTypedEventRaised);
-                if(this.invokeOnEnable) HandleTypedEventRaised(typedEventVar.Value);
+                if (this.invokeOnEnable) HandleTypedEventRaised(typedEventVar.Value);
             }
-            else if(untypedEventVar == null)
+            else if (untypedEventVar == null)
             {
-                Debug.LogWarning("Both typed and untyped event var fields are not set. "+name,this);
+                Debug.LogWarning("Both typed and untyped event var fields are not set. " + name, this);
             }
         }
 
@@ -66,7 +66,7 @@ namespace BardicBytes.BardicFramework.EventVars
         {
             if (untypedEventVar != null)
                 untypedEventVar.RemoveListener(HandleUntypedEventRaised);
-            
+
             if (typedEventVar != null)
             {
                 typedEventVar.RemoveListener(HandleTypedEventRaised);
@@ -79,7 +79,7 @@ namespace BardicBytes.BardicFramework.EventVars
                 HandleUntypedEventRaised();
 
             typedResponse.Invoke(data);
-            for(int i =0; i < conditionalResponses.Count; i++)
+            for (int i = 0; i < conditionalResponses.Count; i++)
             {
                 if (conditionalResponses[i].requiredResponse.Equals(data))
                     conditionalResponses[i].cEvent.Invoke(data);

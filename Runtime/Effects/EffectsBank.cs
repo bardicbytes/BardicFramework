@@ -46,7 +46,7 @@ namespace BardicBytes.BardicFramework.Effects
 
         public void Add(SoundEffect sfx)
         {
-            if (sfx == null) Debug.LogError("SFX is null ? "+sfx);
+            if (sfx == null) Debug.LogError("SFX is null ? " + sfx);
             if (runtimeSoundBank.Contains(sfx)) return;
             runtimeSoundBank.Add(sfx);
             onSfxAdded?.Invoke(sfx);

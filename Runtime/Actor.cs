@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace BardicBytes.BardicFramework
 {
-    
+
     /// <summary>
     /// The Actor is the head component of the Bardic Framework, connecting all the modules together.
     /// Like a GameObject needs Components, the Actor needs ActorModules.
@@ -32,21 +32,21 @@ namespace BardicBytes.BardicFramework
 
         [field: SerializeField]
         [Tooltip("When true, the actor game object is deactivated on SelfDestruct, but will be destroyed when false.")]
-        public BoolEventVar.Field DeactivateOnSelfDestruct{ get; protected set; }
-        [field:Space]
+        public BoolEventVar.Field DeactivateOnSelfDestruct { get; protected set; }
+        [field: Space]
         [field: SerializeField]
-        public StringEventVar DebugEvent{ get; protected set; }
+        public StringEventVar DebugEvent { get; protected set; }
 
-        
+
         /// <summary>
         /// The center of mass in world space.
         /// </summary>
         public Vector3 Center => transform.position + (HasRigidbody ? Rigidbody.centerOfMass : Vector3.zero);
 
 #if UNITY_EDITOR
-        [field:SerializeField]
+        [field: SerializeField]
         private GizmosMode DebugGizmo { get; set; } = default;
-        
+
         [SerializeField]
         private int[] compCache;
 #endif
@@ -84,17 +84,17 @@ namespace BardicBytes.BardicFramework
         public event System.Action FixedUpdated;
 
 #if UNITY_EDITOR
-        public string[] EditorFieldNames => new string[] { StringFormatting.GetBackingFieldName( "DeactivateOnSelfDestruct") };
+        public string[] EditorFieldNames => new string[] { StringFormatting.GetBackingFieldName("DeactivateOnSelfDestruct") };
         public bool DrawOtherFields => true;
 
         private void OnDrawGizmos()
         {
-            if(DebugGizmo.enableWire) DrawGizmos(true);
+            if (DebugGizmo.enableWire) DrawGizmos(true);
         }
 
         private void OnDrawGizmosSelected()
         {
-            if(DebugGizmo.solidWhenSelected) DrawGizmos(false);
+            if (DebugGizmo.solidWhenSelected) DrawGizmos(false);
         }
 
         private void DrawGizmos(bool wire)
@@ -103,7 +103,7 @@ namespace BardicBytes.BardicFramework
             if (DebugGizmo.cube)
             {
                 if (wire) Gizmos.DrawWireCube(Center, Vector3.one * DebugGizmo.radius * 2);
-                if (!wire) Gizmos.DrawCube(Center, Vector3.one * DebugGizmo.radius*2);
+                if (!wire) Gizmos.DrawCube(Center, Vector3.one * DebugGizmo.radius * 2);
             }
             if (DebugGizmo.sphere)
             {
@@ -113,7 +113,7 @@ namespace BardicBytes.BardicFramework
         }
 
         private void OnValidate()
-        {            
+        {
             RefreshComps();
         }
 
@@ -154,7 +154,7 @@ namespace BardicBytes.BardicFramework
 
                 for (int i = 0; i < AllComponents.Length; i++)
                 {
-                    if(AllComponents[i] == null)
+                    if (AllComponents[i] == null)
                     {
                         Debug.LogWarning("null ?");
                     }
@@ -173,7 +173,7 @@ namespace BardicBytes.BardicFramework
 
         protected virtual void OnEnable()
         {
-            if(director == null)
+            if (director == null)
             {
                 director = new GameObject("Actor Director").AddComponent<Director>();
             }
@@ -245,7 +245,7 @@ namespace BardicBytes.BardicFramework
             System.Type key = typeof(ComponentT);
             if (!HasModule<ComponentT>()) return null;
             var modList = new List<ComponentT>();
-            for(int i =0; i < ModulesLookup[key].Count ;i++)
+            for (int i = 0; i < ModulesLookup[key].Count; i++)
             {
                 modList.Add(AllComponents[ModulesLookup[key][i]] as ComponentT);
             }

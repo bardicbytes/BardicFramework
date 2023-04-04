@@ -18,14 +18,14 @@ namespace BardicBytes.BardicFramework
         public SimpleStateMachine(params SimpleState[] states)
         {
             if (states.Length == 0) return;
-            this.states = new List<SimpleState>(states);            
+            this.states = new List<SimpleState>(states);
             next = this.states[0];
             currentState = null;
         }
 
         public void Start()
         {
-            if(currentState == null) GoToNext();
+            if (currentState == null) GoToNext();
         }
 
         public void Tick()
@@ -35,7 +35,7 @@ namespace BardicBytes.BardicFramework
 
         public void GoToNext(bool forceNext = false)
         {
-            if(forceNext || currentState == null || (currentState.IsInternallyComplete)) GoTo(next);
+            if (forceNext || currentState == null || (currentState.IsInternallyComplete)) GoTo(next);
         }
 
         public void GoTo(SimpleState nextState)
@@ -48,7 +48,7 @@ namespace BardicBytes.BardicFramework
                 currentState.Enter();
             }
         }
-        
+
         public void SetNext(SimpleState nextState)
         {
             this.next = nextState;
@@ -57,12 +57,12 @@ namespace BardicBytes.BardicFramework
         public override string ToString()
         {
             string text = "";
-            for(int i = 0; i < states.Count; i++)
+            for (int i = 0; i < states.Count; i++)
             {
                 text += states[i].name;
                 if (i != states.Count - 1) text += ", ";
             }
-            return "<B>StateMachine!</B> Current: "+CurrentState+"\nstates: " + text;
+            return "<B>StateMachine!</B> Current: " + CurrentState + "\nstates: " + text;
         }
 
         public class SimpleState
@@ -76,7 +76,7 @@ namespace BardicBytes.BardicFramework
             public virtual bool IsInternallyComplete { get { return true; } }
             public virtual string Why { get { return "Always Is!"; } }
 
-            public override string ToString() => string.Format("{0} ({1}) Why? {2}", name, GetType().Name,Why);
+            public override string ToString() => string.Format("{0} ({1}) Why? {2}", name, GetType().Name, Why);
 
             public virtual void Enter() => onEnter.Invoke(this);
             public virtual void Exit() => onExit.Invoke(this);
