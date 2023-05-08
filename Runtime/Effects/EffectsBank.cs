@@ -1,4 +1,4 @@
-﻿//alex@bardicbytes.com
+﻿// alex@bardicbytes.com
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,22 +21,22 @@ namespace BardicBytes.BardicFramework.Effects
         public event System.Action<SoundEffect> onSfxAdded;
         public event System.Action<SoundEffect> onSfxRemoved;
 
-        private void OnValidate()
-        {
-            for (int i = 0; i < specialEffectBank.Length; i++)
-            {
-#if UNITY_EDITOR
-                if (specialEffectBank[i] == null) UnityEditor.ArrayUtility.RemoveAt(ref specialEffectBank, i);
-#endif
-            }
+//        private void OnValidate()
+//        {
+//            for (int i = 0; i < specialEffectBank.Length; i++)
+//            {
+//#if UNITY_EDITOR
+//                if (specialEffectBank[i] == null) UnityEditor.ArrayUtility.RemoveAt(ref specialEffectBank, i);
+//#endif
+//            }
 
-            for (int i = 0; i < soundEffectBank.Length; i++)
-            {
-#if UNITY_EDITOR
-                if (soundEffectBank[i] == null) UnityEditor.ArrayUtility.RemoveAt(ref soundEffectBank, i);
-#endif
-            }
-        }
+//            for (int i = 0; i < soundEffectBank.Length; i++)
+//            {
+//#if UNITY_EDITOR
+//                if (soundEffectBank[i] == null) UnityEditor.ArrayUtility.RemoveAt(ref soundEffectBank, i);
+//#endif
+//            }
+//        }
 
         public void Initialize()
         {

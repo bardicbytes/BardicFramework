@@ -1,5 +1,5 @@
-﻿//alex@bardicbytes.com
-//why? https://www.youtube.com/watch?v=raQ3iHhE_Kk
+﻿// alex@bardicbytes.com
+
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -62,6 +62,14 @@ namespace BardicBytes.BardicFramework.EventVars
         {
             lastRaiseTime = 0;
             runtimeListenerCount = 0;
+#if UNITY_EDITOR
+
+            if (GUID == null)
+            {
+                var p = UnityEditor.AssetDatabase.GetAssetPath(this);
+                GUID = UnityEditor.AssetDatabase.AssetPathToGUID(p);
+            }
+#endif
         }
 
         protected virtual void OnEnable()

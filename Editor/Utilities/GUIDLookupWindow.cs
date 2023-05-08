@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Bardic.BardicFrameworkEditor.Utilities
+namespace BardicBytes.BardicFrameworkEditor.Utilities
 {
     public class GUIDLookupWindow : EditorWindow
     {

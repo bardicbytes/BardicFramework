@@ -1,4 +1,5 @@
-﻿//alex@bardicbytes.com
+﻿// alex@bardicbytes.com
+
 using BardicBytes.BardicFramework.EventVars;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.Serialization;
 namespace BardicBytes.BardicFramework.Effects
 {
     [CreateAssetMenu(menuName = Prefixes.Effects + "Special Effect")]
-    public class SpecialEffect : SimpleGenericEventVar<SpecialEffect.PlayRequest>
+    public class SpecialEffect : GenericSystemObjectEventVar<SpecialEffect.PlayRequest>
     {
         [SerializeField]
         private StringEventVar debugMsg = default;
@@ -99,7 +100,7 @@ namespace BardicBytes.BardicFramework.Effects
 
             public override string ToString()
             {
-                return "SpecialEffect.ActiveHandle: " + request.fx.name + " Handle. " + (wasConstructed ? "Constructed " : "NOT Constructed!?") + startTime;
+                return "SpecialEffect.ActiveHandle: " + (request.fx == null ? "null fx" : request.fx.name) + " Handle. " + (wasConstructed ? "Constructed " : "NOT Constructed!?") + startTime;
             }
         }
 

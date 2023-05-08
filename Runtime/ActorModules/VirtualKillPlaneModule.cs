@@ -17,7 +17,6 @@ namespace BardicBytes.BardicFramework.ActorModules
             base.OnValidate();
             //Height.Validate(this);
         }
-
         protected override void ActorUpdate()
         {
             if (Actor.Rigidbody.position.y >= Height) return;
@@ -30,5 +29,4 @@ namespace BardicBytes.BardicFramework.ActorModules
             Actor.SelfDestruct();
         }
     }
-
 }

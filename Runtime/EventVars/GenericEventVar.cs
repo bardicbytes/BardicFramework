@@ -1,5 +1,5 @@
-﻿//alex@bardicbytes.com
-//why? https://www.youtube.com/watch?v=raQ3iHhE_Kk
+﻿// alex@bardicbytes.com
+
 using System;
 using UnityEngine;
 using UnityEngine.Events;

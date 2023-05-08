@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BardicBytes.BardicFramework.Effects
 {
     [CreateAssetMenu(menuName = Prefixes.Effects + "Sound Effect")]
-    public class SoundEffect : SimpleGenericEventVar<SoundEffect.PlayRequest>
+    public class SoundEffect : GenericSystemObjectEventVar<SoundEffect.PlayRequest>
     {
         [System.Serializable]
         public struct MusicLevelAdjustment
@@ -264,12 +264,6 @@ namespace BardicBytes.BardicFramework.Effects
             playedOutro = false;
             indexPlayed = -1;
         }
-        public override PlayRequest To(EVInstData bc) => (PlayRequest)bc.SystemObjectValue;
-#if UNITY_EDITOR
-        protected override void SetInitialvalueOfInstanceConfig(PlayRequest val, EventVars.EVInstData config)
-        {
-            config.SystemObjectValue = val;
-        }
-#endif
+
     }
 }
