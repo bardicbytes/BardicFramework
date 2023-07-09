@@ -4,6 +4,6 @@ namespace BardicBytes.BardicFramework.Physics
     public struct RigidbodyConfig
     {
         public bool useGravity, isKinematic;
-        public float mass, drag, angularDrag;
+        public float mass, drag, angularDrag, gravityScale2D;
     }
 }

@@ -30,13 +30,7 @@ namespace BardicBytes.BardicFramework.EventVars
         [SerializeField]
         protected List<ConditionalResponse> conditionalResponses = default;
 
-        protected virtual void HandleUntypedEventRaised()
-        {
-            untypedResponse.Invoke();
-        }
-
-
-        protected virtual void OnEnable()
+        protected override void OnEnable()
         {
             if (untypedEventVar != null)
                 untypedEventVar.AddListener(HandleUntypedEventRaised);
@@ -51,7 +45,7 @@ namespace BardicBytes.BardicFramework.EventVars
             }
         }
 
-        protected virtual void OnDisable()
+        protected override void OnDisable()
         {
             if (untypedEventVar != null)
                 untypedEventVar.RemoveListener(HandleUntypedEventRaised);

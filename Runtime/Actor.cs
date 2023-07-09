@@ -60,6 +60,7 @@ namespace BardicBytes.BardicFramework
 
         public EventVarInstancer Instancer => GetModule<EventVarInstancer>();
         public Rigidbody Rigidbody => GetModule<Rigidbody>();
+        public Rigidbody2D Rigidbody2D => GetModule<Rigidbody2D>();
         public bool HasRigidbody => HasModule<Rigidbody>();
 
         private StringBuilder debugSB;
