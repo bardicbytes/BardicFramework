@@ -4,8 +4,8 @@ namespace BardicBytes.BardicFramework.Actions
 {
     public struct ActionInputData
     {
-        public bool actionADown;
-        public bool actionAHeld;
+        public bool actionDown;
+        public bool actionHeld;
         public bool actionRelease;
     }
 }

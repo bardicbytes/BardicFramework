@@ -41,7 +41,16 @@ namespace BardicBytes.BardicFramework
         /// <summary>
         /// The center of mass in world space.
         /// </summary>
-        public Vector3 Center => transform.position + (HasRigidbody ? Rigidbody.centerOfMass : Vector3.zero);
+        public Vector3 Center 
+        {
+            get {
+                if (HasRigidbody)
+                    return transform.position + Rigidbody.centerOfMass;
+                else if (HasRigidbody2D)
+                    return new Vector2(transform.position.x + Rigidbody2D.centerOfMass.x, transform.position.y + Rigidbody2D.centerOfMass.y);
+                return transform.position;
+            }
+        }
 
 #if UNITY_EDITOR
         [field: SerializeField]
@@ -62,6 +71,7 @@ namespace BardicBytes.BardicFramework
         public Rigidbody Rigidbody => GetModule<Rigidbody>();
         public Rigidbody2D Rigidbody2D => GetModule<Rigidbody2D>();
         public bool HasRigidbody => HasModule<Rigidbody>();
+        public bool HasRigidbody2D => HasModule<Rigidbody2D>();
 
         private StringBuilder debugSB;
         private Dictionary<System.Type, List<int>> modulesLookup;

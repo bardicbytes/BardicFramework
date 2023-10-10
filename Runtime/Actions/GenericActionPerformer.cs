@@ -9,34 +9,8 @@ namespace BardicBytes.BardicFramework.Actions
         where TRuntime : GenericActionRuntime<TAction, TPerformer, TRuntime>
     {
 
-        [SerializeField]
-        protected MonoBehaviour serializedInputSource;
-
-        public IProvideActionInput InputSource => serializedInputSource == null ? null : serializedInputSource as IProvideActionInput;
-
-
         protected List<TAction> actionHistory;
         protected List<TRuntime> activeRuntimes;
-
-        protected override void OnValidate()
-        {
-            base.OnValidate();
-
-            if (serializedInputSource == null)
-            {
-                serializedInputSource = GetComponent<IProvideActionInput>() as MonoBehaviour;
-            }
-            else if (!(serializedInputSource is IProvideActionInput))
-            {
-                serializedInputSource = serializedInputSource.GetComponent<IProvideActionInput>() as MonoBehaviour;
-            }
-
-            if (!(serializedInputSource is IProvideActionInput))
-            {
-                Debug.LogWarning("serializedInputSource must implement IProvideActionInput");
-                serializedInputSource = null;
-            }
-        }
 
         protected void Awake()
         {
