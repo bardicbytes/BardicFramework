@@ -10,9 +10,6 @@ namespace BardicBytes.BardicFramework.Effects
     [CreateAssetMenu(menuName = Prefixes.Effects + "Special Effect")]
     public class SpecialEffect : GenericSystemObjectEventVar<SpecialEffect.PlayRequest>
     {
-        [SerializeField]
-        private StringEventVar debugMsg = default;
-
         [System.Serializable]
         public struct PlayRequest
         {
@@ -52,6 +49,7 @@ namespace BardicBytes.BardicFramework.Effects
             public float delay;
             public SoundEffect sfx;
             public ParticleSystem particlePrefab;
+            public SpecialEffectObject specialEffectObjectPrefab;
             public bool matchTargetRot = true;
         }
 
@@ -61,11 +59,15 @@ namespace BardicBytes.BardicFramework.Effects
             public PlayRequest request;
             //index coresponds beat index
             public Pool[] particlePools;
+            public Pool[] objectPools;
+
             public float startTime;
             //public System.Action<ActiveHandle> completeCallback;
             public bool[] beatFired;
             public ParticleSystem[] spawnedParticles;
             public SoundEffect.ActiveHandle[] soundEffectHandles;
+            public SpecialEffectObject[] spawnedSpecialEffectObjects;
+
             public bool[] beatComplete;
             public bool wasConstructed;
 
@@ -76,21 +78,24 @@ namespace BardicBytes.BardicFramework.Effects
                 //this.completeCallback = request.receiveHandleCallback;
                 this.request = request;
                 this.startTime = Time.time;
+
                 soundEffectHandles = new SoundEffect.ActiveHandle[request.fx.beats.Length];
                 spawnedParticles = new ParticleSystem[request.fx.beats.Length];
+                spawnedSpecialEffectObjects = new SpecialEffectObject[request.fx.beats.Length];
+
                 beatFired = new bool[request.fx.beats.Length];
                 particlePools = new Pool[request.fx.beats.Length];
+
                 for (int i = 0; i < request.fx.beats.Length; i++)
                 {
-                    if (request.fx.beats[i].particlePrefab == null)
+                    if (request.fx.beats[i].particlePrefab != null)
                     {
-                        //leave the pool array element null if there is no prefab to pool
-                        continue;
+                        particlePools[i] = Pool.GetCreatePool(request.fx.beats[i].particlePrefab, request.fx.initCount, request.fx.maxCount, Pool.LimitMode.Unlimited);
                     }
-                    particlePools[i] = Pool.GetCreatePool(request.fx.beats[i].particlePrefab, request.fx.initCount, request.fx.maxCount, Pool.LimitMode.Unlimited);
-                    if (particlePools[i] == null)
+
+                    if (request.fx.beats[i].specialEffectObjectPrefab != null)
                     {
-                        request.fx.debugMsg?.Raise("ActiveHandle constructor for " + request.fx.name + ". particle pool created is null!?");
+                        objectPools[i] = Pool.GetCreatePool(request.fx.beats[i].specialEffectObjectPrefab, request.fx.initCount, request.fx.maxCount, Pool.LimitMode.Unlimited);
                     }
 
                     //Debug.Log("pool getcreated" + particlePools[i]);

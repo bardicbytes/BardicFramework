@@ -232,6 +232,10 @@ namespace BardicBytes.BardicFramework.Effects
             bool hasNoPlayingParticles = !hasParticles || !ps.isPlaying && ps.particleCount == 0;
             bool hasPlayingParticles = (hasParticles && handle.spawnedParticles[beatIndex].isPlaying);
 
+            var specialEffectObject = handle.spawnedSpecialEffectObjects[beatIndex];
+            bool hasSpecialEffectObject = specialEffectObject != null;
+            bool haslivingSpecialEffectObject = hasSpecialEffectObject;
+
             if (hasPlayingParticles && handle.request.HasInactiveTarget)
             {
                 //stop particles if the target they are tracking is gone
@@ -285,6 +289,13 @@ namespace BardicBytes.BardicFramework.Effects
                    {
                        handle.soundEffectHandles[beatIndex] = sfxHandle;
                    });
+            }
+
+            if (b.specialEffectObjectPrefab != null)
+            {
+                Quaternion r = b.matchTargetRot || b.particlePrefab == null ? handle.request.Rot : b.specialEffectObjectPrefab.transform.rotation;
+
+                handle.spawnedSpecialEffectObjects[beatIndex] = handle.objectPools[beatIndex].Spawn<SpecialEffectObject>(handle.objectPools[beatIndex].transform, handle.request.pos, r);
             }
         }
 
@@ -457,6 +468,7 @@ namespace BardicBytes.BardicFramework.Effects
                 {
                     handle.spawnedParticles[0]?.Stop(true, handle.request.fx.ParticleStopBehaviour);
                     handle.soundEffectHandles[0].spawnedSource?.Stop();
+                    handle.spawnedSpecialEffectObjects[0].Kill();
                     return;
                 }
             }
